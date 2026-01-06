@@ -1,0 +1,149 @@
+\documentclass[a4paper,11pt]{article}
+
+% Polskie znaki i kodowanie
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[polish]{babel}
+\usepackage{polski}
+
+% Pakiety do układu strony i grafiki
+\usepackage{geometry}
+\geometry{
+ a4paper,
+ total={170mm,257mm},
+ left=20mm,
+ top=20mm,
+}
+\usepackage{multicol}
+\usepackage{xcolor}
+\usepackage{listings}
+\usepackage{enumitem}
+\usepackage{amssymb}
+\usepackage{amsmath}
+
+% Konfiguracja wyglądu kodu
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.97,0.97,0.97}
+
+\lstset{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{blue},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2,
+    frame=single
+}
+
+\newcommand{\pytanie}[1]{
+    \vspace{0.4cm}
+    \noindent \textbf{? #1}
+}
+
+\title{Przykładowe zadanie 2 - etap powiatowy}
+\date{}
+\author{Justyna Rojek-Nowosielska}
+
+\begin{document}
+
+\maketitle
+
+
+\noindent \textbf{Wstęp} \\
+Rozważmy następujący program, który wykonuje operacje na słowie podanym przez użytkownika. 
+Zakładamy, że słowo składa się wyłącznie z wielkich liter alfabetu łacińskiego (A-Z).
+
+\vspace{0.5cm}
+
+% Kod programu
+\begin{minipage}[t]{0.48\textwidth}
+\textbf{C++}
+\begin{lstlisting}[language=C++]
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main() {
+    string s;
+    cin >> s;
+    int n = s.length();
+    int licznik = 0;
+
+    for (int i = 0; i < n; i++) {
+        // Porownanie znaku z jego
+        // odbiciem lustrzanym
+        if (s[i] == s[n - 1 - i]) {
+            licznik++;
+        }
+    }
+
+    cout << licznik << endl;
+    
+    if (licznik == n) {
+        cout << "TAK";
+    } else {
+        cout << "NIE";
+    }
+    
+    return 0;
+}
+\end{lstlisting}
+\end{minipage}
+\hfill
+
+\vspace{0.5cm}
+\hrule
+\vspace{0.5cm}
+
+\noindent Program przyjmuje na wejściu jeden ciąg znaków (napis).
+\noindent Dla słowa KOT program wypisze NIE.
+
+% Pytania
+\pytanie{1.1. Co sprawdza warunek \texttt{licznik == n} na końcu programu?}
+\begin{enumerate}[label=(\alph*), noitemsep]
+    \item Czy słowo składa się z samych takich samych liter (np. "AAA"),
+    \item Czy słowo jest palindromem (czyta się tak samo od przodu i od tyłu),
+    \item Czy słowo ma parzystą długość,
+    \item Czy słowo zawiera powtórzone znaki obok siebie (np. "ANNA").
+\end{enumerate}
+
+\pytanie{1.2. Co wypisze program dla wejścia: \texttt{KAJAK}?}
+
+\pytanie{1.3. Co wypisze program dla wejścia: \texttt{MAMA}?}
+
+\pytanie{1.4. Co wypisze program dla wejścia: \texttt{DOM}?}
+
+\pytanie{1.5. Podaj przykład 4-literowego słowa, dla którego zmienna \texttt{licznik} przyjmie wartość 2.}
+
+\pytanie{1.6. Ile razy wykona się pętla dla słowa o długości 10 znaków?}
+
+\pytanie{1.7. Algorytm w obecnej formie jest mało wydajny. Wykonuje więcej porównań niż to konieczne. Ile razy minimalnie wystarczyłoby porównać znaki dla słowa o długości 10, aby program działał poprawnie?}
+
+\pytanie{1.8. Jaka będzie wartość zmiennej \texttt{licznik} dla słowa \texttt{ABBA}?}
+
+\pytanie{1.9. Użytkownik wpisał słowo \texttt{Informatyka}. Program wypisał \texttt{NIE}. Gdyby program miał ignorować wielkość liter (tzn. traktować 'a' i 'A' jako to samo), to jak należałoby zmodyfikować porównanie znaków?}
+
+\pytanie{1.10. Analiza kodu.} \\
+Zauważ, że pętla w programie przebiega od $0$ do $n-1$. Jeśli wprowadzimy słowo \texttt{AUTO}, porównania wyglądają tak:
+\begin{itemize}[noitemsep]
+    \item $i=0$: porównaj 'A' (s[0]) z 'O' (s[3]) $\rightarrow$ różne
+    \item $i=1$: porównaj 'U' (s[1]) z 'T' (s[2]) $\rightarrow$ różne
+    \item $i=2$: porównaj 'T' (s[2]) z 'U' (s[1]) $\rightarrow$ różne
+    \item $i=3$: porównaj 'O' (s[3]) z 'A' (s[0]) $\rightarrow$ różne
+\end{itemize}
+Zmienna \texttt{licznik} wyniesie 0.
+Podaj przykład słowa o długości 4, dla którego \texttt{licznik} wyniesie 0, ale słowo będzie zawierało dwie litery 'A'.
+
+\end{document}
