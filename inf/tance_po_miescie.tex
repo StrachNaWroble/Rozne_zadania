@@ -1,0 +1,49 @@
+\documentclass{solve}
+\usepackage{tikz}
+\usepackage{soul}
+\usepackage{dirtytalk}
+\usepackage{gensymb}
+
+\begin{document}
+    \pageHeader{Tańce po mieście}{TAN}{128}{3}
+    \begin{center}
+        \say{Ah ten felerny piątek!}
+    \end{center}
+    $$$$
+    
+    Roman jest bardzo inteligentny, ale tym razem nie obejdzie się bez Twojej pomocy. Nie chcemy jednak, abyś go zbyt pochopnie ocenił, więc zacznijmy od początku…
+    
+    10 marca 2006 roku w jednym z najlepszych wrocławskich szpitali na świat przyszedł Roman. Już~od~dziecka przejawiał wiele talentów… No dobrze, może nie od aż takiego początku. Przejdźmy trochę dalej.
+    
+    10 marca 2023 roku, w dniu swoich $osiemnastych$ urodzin po stresującym i intensywnym tygodniu, przepełnionym karkówkami z tabliczki mnożenia, sprawdzianami z fikołków i zaliczeniami ustnymi z historii, Roman postanowił zabalować na mieście. Szybko zgromadził swoich ziomków i razem udali się do baru, aby rozpocząć zabawę polegającą na obijaniu się od jednej knajpy do drugiej. $No~i~pooooszli!$ \\ Nie mogło oczywiście obejść się bez przygód. W pierwszym barze zostawili plecak, w innym nakrętkę od bidonu. W drodze do trzeciego niemal stracili jednego z ziomków w kałuży, na szczęście ze wszystkich tarapatów wyciągały ich ustalone sygnały dźwiękowe, takie jak: $"Arrrrriwaaaa!"$. \\ Następnego dnia rano Roman spojrzał na licznik kroków na zegarku i zaczął zastanawiać się: "W ilu byłem barach, skoro wykręciłem taki licznik?".
+    
+    Wrocław można przedstawić na planie $N \times M$ kwadratów. Na obrzeżach miasta (w pierwszym od góry~i~ostatnim od dołu rzędzie oraz pierwszej od lewej i prawej kolumnie) znajdują się bary, które potencjalnie mogli odwiedzić Roman i jego ziomkowie. Dla danego punktu startowego oblicz, w ilu barach byli przez noc, wiedząc, że przemieszczają się oni po przekątnych, a kiedy dochodzą do krawędzi miasta odwiedzają umiejscowiony tam bar~i~dalej udają się w podróż po przekątnej obróceni o $90^{\degree}$ (po przekątnej, którą jeszcze nie szedł) tak, aby pozostać na planszy. Jeśli Romek znajdzie się w rogu planszy lub trafi drugi raz do tego samego baru, to jego wycieczka się kończy. Twoim zadaniem jest policzenie, ile różnych barów odwiedzi (odbije się od boku planszy), zanim zakończy wycieczkę. Przykładowa mapa przebytej trasy znajduje się na obrazku.  
+
+    \begin{center}
+    \includegraphics[width=48mm,height=36mm]{abc.png}
+    \end{center}
+    
+    \section{Wejście}
+    W pierwszym wierszu wejścia znajdują się dwie liczby naturalne $N$ i $M$, oddzielone pojedynczym odstępem~i~określające kolejno: wysokość i szerokość miasta. W kolejnym wierszu znajdują się dwie liczby naturalne $A$ i $B$, oddzielone pojedynczym odstępem, oznaczające współrzędne pola startowego. Zagwarantowane jest, że pole startowe znajduje się w skrajnych rzędach lub kolumnach planszy (tam gdzie bar). Roman startując nie odwiedza baru, ale odweidza go jeśli wraca tam po odbiciach. Pierwszy kierunek jaki obierze Roman to południowy-wschód. W przypadku, gdy nie będzie to możliwe, obierze jeden z możliwych kierunków: południowy-zachód lub pólnocny-wschód.
+   
+    \section{Wyjście}
+    W jedynym wierszu standardowego wyjścia powinna znaleźć się jedna liczba całkowita odpowiadająca liczbie odwiedzonych barów. 
+    
+    \section{Ograniczenia}
+    $2 \leq N, M \leq 1\,000\,000, 1 \leq A, B \leq 1\,000\,000$.
+    
+    \section{Przykład}
+    \testVerb{pia0a.in}{pia0a.out}{Test przykładowy opisuje obrazek powyżej}
+    \testVerb{pia0b.in}{pia0b.out}{}
+
+    \section{Podzadania}
+    \begin{center}
+    \begin{tabular}{|c|c|}
+        \hline
+        $N = M$ & $10$ \\
+        \hline
+        $N, M, A, B \leq 1000$ & $50$ \\
+        \hline
+    \end{tabular}
+\end{center}
+\end{document}
