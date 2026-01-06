@@ -1,0 +1,146 @@
+\documentclass[a4paper,11pt]{article}
+
+% Polskie znaki i kodowanie
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[polish]{babel}
+\usepackage{polski}
+% Pakiety do układu strony i grafiki
+\usepackage{geometry}
+\geometry{
+ a4paper,
+ total={170mm,257mm},
+ left=20mm,
+ top=20mm,
+}
+\usepackage{multicol}
+\usepackage{xcolor}
+\usepackage{listings}
+\usepackage{enumitem}
+\usepackage{amssymb}
+\usepackage{amsmath}
+
+% Konfiguracja wyglądu kodu
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.96,0.96,0.96}
+
+\lstset{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{blue},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2,
+    frame=single
+}
+
+\newcommand{\pytanie}[1]{
+    \vspace{0.4cm}
+    \noindent \textbf{? #1}
+}
+
+\title{Przykładowe zadanie 3 - etap powiatowy}
+\date{}
+\author{Justyna Rojek-Nowosielska}
+
+\begin{document}
+
+\maketitle
+\vspace{-1.5cm}
+
+\noindent \textbf{Wstęp} \\
+Rozważmy następujący program, który analizuje ciąg liczb całkowitych dodatnich (możesz traktować je jako ceny pewnego towaru w kolejnych dniach).
+
+\vspace{0.5cm}
+
+% Kod programu
+\begin{minipage}[t]{0.48\textwidth}
+\textbf{C++}
+\begin{lstlisting}[language=C++]
+#include <iostream>
+#include <vector>
+#include <algorithm>
+using namespace std;
+
+int main() {
+    int n;
+    cin >> n;
+    vector<int> C(n);
+    for (int i = 0; i < n; i++) {
+        cin >> C[i];
+    }
+
+    int wynik = 0;
+    
+    for (int j = 1; j < n; j++) {
+        for (int i = 0; i < j; i++) {
+            int roznica = C[j] - C[i];
+            if (roznica > wynik) {
+                wynik = roznica;
+            }
+        }
+    }
+
+    cout << wynik << endl;
+    return 0;
+}
+\end{lstlisting}
+\end{minipage}
+
+\vspace{0.5cm}
+\hrule
+\vspace{0.5cm}
+
+\noindent Program przyjmuje na wejściu liczbę $n$ (liczba dni), a następnie $n$ liczb całkowitych oznaczających wartości w kolejne dni.
+
+% Pytania
+\pytanie{1.1. Co oblicza powyższy program?}
+\begin{enumerate}[label=(\alph*), noitemsep]
+    \item największą liczbę występującą w ciągu $C$,
+    \item największą różnicę między dwoma sąsiednimi elementami ciągu,
+    \item największy możliwy zysk, kupując w dniu $i$ i sprzedając w dniu $j$ (gdzie $j > i$),
+    \item liczbę par $(i, j)$ takich, że $C[j] > C[i]$.
+\end{enumerate}
+
+\pytanie{1.2. Co wypisze program dla danych wejściowych: \texttt{5} oraz ciągu \texttt{7 1 5 3 6}?}
+
+\pytanie{1.3. Podaj przykład 4-elementowego ciągu, dla którego program wypisze \texttt{0}.}
+
+\pytanie{1.4. Ile operacji odejmowania wykona ten program dla $n=100$? (Przybliżona wartość lub dokładny wzór).}
+
+\pytanie{1.5. Czy wynik działania programu może być liczbą ujemną przy założeniu, że wszystkie liczby na wejściu są dodatnie? Uzasadnij.}
+
+\pytanie{1.6. Jeśli na wejściu podamy ciąg posortowany rosnąco (np. 1, 2, 3, ..., 100), jaki będzie wynik?}
+\begin{enumerate}[label=(\alph*), noitemsep]
+    \item 0
+    \item 100
+    \item 99
+    \item 5050
+\end{enumerate}
+
+\pytanie{1.7. Ile jest par liczb $(i, j)$, które program sprawdza dla ciągu o długości $n=5$?}
+
+\pytanie{1.8. Dla jakiego typu danych wejściowych (układ liczb) ten algorytm zwróci największą możliwą różnicę (równą różnicy między max i min całego ciągu)?}
+
+\pytanie{1.9. Zmodyfikuj (w wyobraźni) jedną linię kodu tak, aby program obliczał największą stratę (czyli największy spadek wartości między dniem $i$ a $j$, gdzie $j > i$).}
+
+\pytanie{1.10. Optymalizacja.} \\
+Podany algorytm ma złożoność $O(n^2)$. Dla $n=100\,000$ nie zakończy się w czasie 1 sekundy. 
+Zauważ, że aby zmaksymalizować różnicę $C[j] - C[i]$ dla ustalonego $j$, musimy odjąć najmniejszą wartość $C[i]$ napotkaną \textbf{wcześniej}. 
+Zaproponuj algorytm (słownie lub kod), który rozwiąże to zadanie, przeglądając tablicę tylko raz ($O(n)$).
+
+\newpage
+
+\end{document}
