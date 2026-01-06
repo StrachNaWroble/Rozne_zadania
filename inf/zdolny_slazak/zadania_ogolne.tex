@@ -1,0 +1,116 @@
+\documentclass[a4paper, 12pt]{article}
+\usepackage{lipsum}
+\usepackage{polski}
+\usepackage{gensymb}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[polish]{babel}
+\usepackage{amsmath}
+\usepackage{amssymb} 
+\usepackage{enumitem} 
+
+\usepackage[letterpaper,top=1mm,bottom=1.5cm,left=2cm,right=2cm,marginparwidth=1.75cm]{geometry}
+
+\usepackage{graphicx}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+
+ 
+\title{Lista 1 - zDolny Ślązak z Informatyki}
+\author{Justyna Rojek-Nowosielska}
+
+\renewcommand{\mod}{\ \text{mod}\ }
+
+\begin{document}
+\maketitle
+\vspace*{1pt}
+
+\subsection*{1. Pozycyjne systemy liczbowe}
+
+\begin{enumerate}
+    \item \textbf{System dwójkowy:}
+    \begin{enumerate}[label=\alph*)]
+        \item Zamień podane liczby (zapisane w systemie dziesiętnym) na system dwójkowy: 13, 42, 129.
+        \item Zamień podane liczby (zapisane w systemie dwójkowym) na system dziesiętny: $1011_2$, $110101_2$, $10000001_2$.
+    \end{enumerate}
+
+    \item \textbf{System ósemkowy:}
+    \begin{enumerate}[label=\alph*)]
+        \item Zamień podane liczby (zapisane w systemie dziesiętnym) na system ósemkowy: 9, 70, 513.
+        \item Zamień podane liczby (zapisane w systemie ósemkowym) na system dziesiętny: $15_8$, $101_8$, $273_8$.
+    \end{enumerate}
+
+    \item \textbf{System szesnastkowy:}
+    \begin{enumerate}[label=\alph*)]
+        \item Zamień podane liczby (zapisane w systemie dziesiętnym) na system szesnastkowy: 20, 255, 400.
+        \item Zamień podane liczby (zapisane w systemie szesnastkowym) na system dziesiętny: $1A_{16}$, $F0_{16}$, $101_{16}$.
+    \end{enumerate}
+    
+    \item \textbf{Zadanie dodatkowe:} Uporządkuj podane liczby rosnąco (przeliczając je na system dziesiętny): 
+    $$100_{16}, \quad 10010011_2, \quad 200_{10}, \quad 300_8$$
+\end{enumerate}
+
+\subsection*{2. Cechy podzielności i operacja reszty z dzielenia}
+
+\begin{enumerate}
+    \item Oblicz resztę z dzielenia:
+    \begin{enumerate}[label=\alph*)]
+        \item $(120 + 54) \mod 10$
+        \item $(19 \cdot 8) \mod 7$
+        \item $5^3 \mod 4$
+    \end{enumerate}
+    
+    \item Pociąg ma 7 wagonów (numerowanych 0, 1, 2, 3, 4, 5, 6). Konduktor jest w wagonie nr 1 i przechodzi 10 wagonów do przodu (z wagonu 6 przechodzi spowrotem do wagonu 0). W którym wagonie się znajdzie? A po 100 przejściach?
+    
+    \item Jaka jest suma cyfr liczby 12345? Jaki będzie wynik operacji $12345 \% 9$? Jaka jest suma cyfr liczby 554? Jaki będzie wynik operacji $554 \% 9$? (Jak to zrobić, żeby się nie naliczyć za bardzo?)
+    
+    \item Program oblicza iloczyn cyfr liczby. Jaki będzie wynik dla $n = 105$, a jaki dla $n = 239$?
+\end{enumerate}
+
+\break
+\subsection*{3. Liczby pierwsze}
+
+\begin{enumerate}
+    \item Jaka jest ósma liczba pierwsza?
+    
+    \item Podaj rozkład na czynniki pierwsze liczb:
+    \begin{enumerate}[label=\alph*)]
+        \item 120
+        \item 300
+        \item 512
+    \end{enumerate}
+    
+    \item Ile \textbf{różnych} czynników pierwszych mają liczby:
+    \begin{enumerate}[label=\alph*)]
+        \item 60 (czynniki to 2, 3, 5, więc 3 różne czynniki)
+        \item 100
+        \item 48
+    \end{enumerate}
+    
+    \item Jaka jest największa liczba pierwsza mniejsza niż 100?
+    
+    \item Używając algorytmu Sita Eratostenesa do znalezienia liczb pierwszych w zakresie $[2, 24]$ (wypisz te liczby i skreślaj je po kolei), wielokrotności jakiej liczby pierwszej będą wykreślane jako ostatnie?
+\end{enumerate}
+
+\subsection*{4. NWD i NWW}
+
+\begin{enumerate}
+    \item Oblicz Największy Wspólny Dzielnik (NWD) dla podanych \textbf{trzech} liczb:
+    \begin{enumerate}[label=\alph*)]
+        \item 12, 18, 30
+        \item 45, 75, 120
+    \end{enumerate}
+    
+    \item Oblicz Najmniejszą Wspólną Wielokrotność (NWW) dla podanych \textbf{trzech} liczb:
+    \begin{enumerate}[label=\alph*)]
+        \item 3, 5, 6
+        \item 8, 12, 16
+    \end{enumerate}
+    
+    \item NWD dwóch liczb $a$ i $b$ wynosi 10, a ich NWW wynosi 120. Jedna z liczb to 30. Jaka jest druga liczba? (Wskazówka: $a \cdot b = NWD(a, b) \cdot NWW(a, b)$).
+    
+    \item Do jakiej najprostszej (nieskracalnej) postaci można uprościć ułamek $\frac{60}{144}$?
+    
+    \item Śledzimy kroki algorytmu Euklidesa (w wersji z odejmowaniem) dla liczb 42 i 18. Jaka para liczb będzie przetwarzana tuż przed otrzymaniem wyniku?
+\end{enumerate}
+
+\end{document}
