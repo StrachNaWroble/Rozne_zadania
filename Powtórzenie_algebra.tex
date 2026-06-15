@@ -1,0 +1,861 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{polski}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage{polski}
+\usepackage{amsmath, amssymb}
+\usepackage[margin=2.5cm]{geometry}
+
+\title{\textbf{Algebra Liniowa - Podsumowanie definicji i własności według skryptu i gemini}}
+\author{Justyna Rojek-Nowosielska}
+
+\begin{document}
+
+\maketitle
+
+\section*{1. Ciała ($\mathbb{F}$)}
+\noindent\textbf{Ciało $\mathbb{F}$:} Uogólnienie zbioru liczb (np. $\mathbb{R}, \mathbb{Q}, \mathbb{C}, \mathbb{Z}_p$). Posiada dwa wyróżnione elementy: $\mathbf{0}$ (neutralny dodawania) oraz $\mathbf{1}$ (neutralny mnożenia).
+\begin{itemize}
+    \item Element przeciwny: $\forall \alpha \in \mathbb{F}\ \exists (-\alpha) \in \mathbb{F}: \alpha + (-\alpha) = 0$
+    \item Element odwrotny: $\forall \alpha \in \mathbb{F} \setminus \{0\}\ \exists \alpha^{-1} \in \mathbb{F}: \alpha \cdot \alpha^{-1} = 1$
+\end{itemize}
+
+\section*{2. Przestrzenie liniowe ($\mathbb{V}$)}
+\noindent\textbf{Przestrzeń liniowa nad ciałem $\mathbb{F}$:} Zbiór $\mathbb{V}$ z działaniami $+: \mathbb{V} \times \mathbb{V} \to \mathbb{V}$ oraz $\cdot: \mathbb{F} \times \mathbb{V} \to \mathbb{V}$ spełniającymi:
+\begin{itemize}
+    \item $+$ jest \textbf{przemienne} i \textbf{łączne}.
+    \item $\exists \mathbf{\vec{0}} \in \mathbb{V}\ \forall \vec{v} \in \mathbb{V}: \vec{0} + \vec{v} = \vec{v}$
+    \item $\forall \vec{v} \in \mathbb{V}\ \exists (-\vec{v}) \in \mathbb{V}: \vec{v} + (-\vec{v}) = \vec{0}$
+    \item $(\alpha + \beta)\vec{v} = \alpha\vec{v} + \beta\vec{v}$
+    \item $\alpha(\vec{u} + \vec{v}) = \alpha\vec{u} + \alpha\vec{v}$
+    \item $\alpha(\beta\vec{v}) = (\alpha\beta)\vec{v}$
+    \item $1 \cdot \vec{v} = \vec{v}$
+\end{itemize}
+
+\noindent\textbf{Kluczowe własności:}
+\begin{itemize}
+    \item $0 \cdot \vec{v} = \vec{0} \quad \land \quad \alpha \cdot \vec{0} = \vec{0}$
+    \item $\mathbf{\alpha \cdot \vec{v} = \vec{0} \iff \vec{v} = \vec{0} \lor \alpha = 0}$
+    \item $(-1)\vec{v} = -\vec{v}$
+\end{itemize}
+
+\section*{3. Podprzestrzenie liniowe}
+\noindent\textbf{Podprzestrzeń liniowa ($\mathbb{W} \le \mathbb{V}$):} Podzbiór $\emptyset \neq \mathbb{W} \subseteq \mathbb{V}$, który sam jest przestrzenią liniową.
+
+\noindent\textbf{Charakteryzacja:} 
+$$ \mathbf{\mathbb{W} \le \mathbb{V} \iff (\forall \vec{u}, \vec{w} \in \mathbb{W}: \vec{u} + \vec{w} \in \mathbb{W}) \land (\forall \alpha \in \mathbb{F}, \vec{w} \in \mathbb{W}: \alpha\vec{w} \in \mathbb{W})} $$
+
+\noindent\textbf{Suma podprzestrzeni:} $\mathbb{W} + \mathbb{W}' = \{\vec{w} + \vec{w}' : \vec{w} \in \mathbb{W}, \vec{w}' \in \mathbb{W}'\}$ \\
+(\textbf{Najmniejsza} podprzestrzeń zawierająca $\mathbb{W} \cup \mathbb{W}'$).
+
+\noindent\textbf{Przecięcie:} $\bigcap_{i \in I} \mathbb{W}_i$ jest \textbf{zawsze} podprzestrzenią liniową.
+
+\section*{4. Kombinacje i otoczka liniowa}
+\noindent\textbf{Kombinacja liniowa:} Wektor postaci $\mathbf{\sum_{i=1}^k \alpha_i \vec{v}_i}$, gdzie $\alpha_i \in \mathbb{F}, \vec{v}_i \in \mathbb{V}$.
+
+\noindent\textbf{Otoczka liniowa ($LIN(U)$):} Zbiór \textbf{wszystkich skończonych kombinacji liniowych} wektorów z $U$.
+\begin{itemize}
+    \item $\mathbf{LIN(U) \le \mathbb{V}}$ (\textbf{najmniejsza} przestrzeń zawierająca $U$).
+    \item \textbf{Niezmienniczość $LIN$:} \\
+    $LIN(\dots, \vec{v}_i, \dots) = LIN(\dots, \alpha\vec{v}_i, \dots)$ dla $\alpha \neq 0$. \\
+    $LIN(\dots, \vec{v}_i, \dots) = LIN(\dots, \vec{v}_i + \alpha \vec{v}_j, \dots)$ dla $i \neq j$.
+\end{itemize}
+
+\section*{5. Liniowa niezależność}
+\noindent\textbf{Liniowa niezależność układu $U$:} 
+$$ \mathbf{\forall k \ge 1: \sum_{i=1}^k \alpha_i \vec{v}_i = \vec{0} \implies \alpha_1 = \alpha_2 = \dots = \alpha_k = 0} $$
+\textbf{Równoważnie:} Układ jest niezależny $\iff \vec{0}$ ma \textbf{dokładnie jedno} przedstawienie jako kombinacja liniowa.
+
+\noindent\textbf{Liniowa zależność układu $U$:} $\mathbf{\exists \vec{u} \in U: \vec{u} \in LIN(U \setminus \{\vec{u}\})}$ \\
+(Jeden z wektorów to kombinacja liniowa pozostałych).
+
+\section*{6. Eliminacja Gaussa}
+\noindent\textbf{Postać schodkowa:} Układ wektorów $\vec{V}_1, \dots, \vec{V}_m$, w którym pierwsza niezerowa współrzędna wektora $\vec{V}_j$ znajduje się na pozycji $i_j$, przy czym $\mathbf{i_1 < i_2 < \dots < i_m}$.
+
+\noindent\textbf{Własności:}
+\begin{itemize}
+    \item Układ w postaci schodkowej jest \textbf{zawsze liniowo niezależny}.
+    \item \textbf{Eliminacja Gaussa} \textbf{nie zmienia} rozpinanej przestrzeni ($LIN$) ani niezależności układu. Przekształca wektory do postaci schodkowej (oraz ew. wektorów zerowych).
+\end{itemize}
+
+\section*{7. Baza i wymiar przestrzeni liniowej}
+\noindent\textbf{Baza ($B$):} $\mathbf{LIN(B) = \mathbb{V} \text{ oraz B jest liniowo niezależny}}$. \\
+(\textit{Minimalny zbiór generujący / rozpinający}).
+
+\noindent\textbf{Wyrażanie wektora w bazie:} Dla bazy $B=\{\vec{v}_1, \dots, \vec{v}_n\}$:
+$$ \mathbf{\forall \vec{v} \in \mathbb{V} \ \exists! (\alpha_1, \dots, \alpha_n): \vec{v} = \sum_{i=1}^n \alpha_i \vec{v}_i} $$
+Zapisujemy to jako: $\mathbf{(\vec{v})_B = (\alpha_1, \dots, \alpha_n)}$. \\
+(\textit{Jednoznaczność reprezentacji}).
+
+\noindent\textbf{Lemat Steinitza o wymianie:} Niech $A$ (układ niezależny), $B$ (układ rozpinający $\mathbb{V}$).
+$$ A \text{ jest bazą } \lor \ \exists \vec{v} \in B: A \cup \{\vec{v}\} \text{ jest liniowo niezależny.} $$
+\textbf{Kluczowe wnioski:} 
+\begin{itemize}
+    \item Każdy zbiór niezależny można \textbf{rozszerzyć do bazy}.
+    \item Z każdego zbioru rozpinającego można \textbf{wybrać bazę}.
+\end{itemize}
+
+\noindent\textbf{Wymiar przestrzeni ($dim(\mathbb{V})$):} Moc (liczba elementów) bazy przestrzeni $\mathbb{V}$. (Wymiar dla $\mathbb{V}=\{\vec{0}\}$ wynosi $0$).
+
+\noindent\textbf{Fakt} Jeśli $B1, B2$ są bazami dla $$\mathbb{V}_1, \mathbb{V}_2 \le \mathbb{V}$$ to $$\mathbb{V}_1 + \mathbb{V}_2 = LIN(B1 \cup B2)$$
+
+\noindent\textbf{Wymiar sumy podprzestrzeni:} 
+$$ \mathbf{dim(\mathbb{V}_1 + \mathbb{V}_2) = dim(\mathbb{V}_1) + dim(\mathbb{V}_2) - dim(\mathbb{V}_1 \cap \mathbb{V}_2)} $$
+
+\section*{8. Izomorfizm przestrzeni}
+\noindent\textbf{Izomorfizm ($\cong$):} Bijekcja $\varphi: \mathbb{V} \to \mathbb{W}$ spełniająca:
+\begin{itemize}
+    \item $\varphi(\vec{u} + \vec{v}) = \varphi(\vec{u}) + \varphi(\vec{v})$
+    \item $\varphi(\alpha\vec{v}) = \alpha\varphi(\vec{v})$
+\end{itemize}
+(\textit{Strukturalne podobieństwo przestrzeni}).
+
+\noindent\textbf{Własności:}
+\begin{itemize}
+    \item Każda $n$-wymiarowa przestrzeń nad ciałem $\mathbb{F}$ jest \textbf{izomorficzna z} $\mathbf{\mathbb{F}^n}$.
+    \item Izomorfizm zachowuje \textbf{liniową niezależność} wektorów.
+\end{itemize}
+
+\section*{9. Warstwy}
+\noindent\textbf{Warstwa ($U$):} Niech $\mathbb{W} \le \mathbb{V}$ (podprzestrzeń). Zbiór $U$ jest warstwą, jeśli:
+$$ \mathbf{U = \vec{u} + \mathbb{W} = \{\vec{u} + \vec{w} : \vec{w} \in \mathbb{W}\}} $$
+(\textit{Przesunięta podprzestrzeń} - zazwyczaj sama \textbf{nie jest} przestrzenią liniową).
+
+\noindent\textbf{Własności warstw:}
+\begin{itemize}
+    \item Przecięcie dwóch warstw: $\mathbf{U \cap U' = \emptyset \ \lor \ U \cap U'}$ \textbf{jest warstwą}.
+    \item \textbf{Wypukłość warstwy} (dla ciał, gdzie $1+1 \neq 0$):
+    $$ \forall \vec{u}, \vec{v} \in U, \alpha \in \mathbb{F}: \mathbf{\alpha\vec{v} + (1-\alpha)\vec{u} \in U} $$
+    (\textit{Zamknięta na proste przechodzące przez 2 punkty}).
+\end{itemize}
+
+\section*{10. Przekształcenia liniowe (Homomorfizmy)}
+\noindent\textbf{Przekształcenie liniowe:} Funkcja $F: \mathbb{V} \to \mathbb{W}$ (między przestrzeniami nad tym samym ciałem $\mathbb{F}$) spełniająca:
+\begin{itemize}
+    \item $\mathbf{F(\alpha\vec{v}) = \alpha F(\vec{v})}$
+    \item $\mathbf{F(\vec{u} + \vec{v}) = F(\vec{u}) + F(\vec{v})}$
+\end{itemize}
+(\textit{Zachowuje mnożenie przez skalar oraz sumę wektorów}).
+
+\noindent\textbf{Własności:}
+\begin{itemize}
+    \item Zbiór przekształceń liniowych tworzy \textbf{przestrzeń liniową} z działaniami "w punkcie" (np. $(F+G)(\vec{v}) = F(\vec{v}) + G(\vec{v})$).
+    \item \textbf{Złożenie} przekształceń liniowych nadal jest przekształceniem liniowym.
+    \item Przekształcenie jest \textbf{jednoznacznie wyznaczone} przez wartości na \textbf{wektorach bazowych}.
+\end{itemize}
+
+\section*{11. Jądro i Obraz przekształcenia}
+\noindent\textbf{Jądro ($ker(F)$):} Zbiór wektorów z dziedziny, które przekształcenie "zeruje".
+$$ \mathbf{ker(F) = \{\vec{v} \in \mathbb{V} : F(\vec{v}) = \vec{0}\}} $$
+
+\noindent\textbf{Obraz ($Im(F)$):} Zbiór przyjmowanych wartości w przeciwdziedzinie.
+$$ \mathbf{Im(F) = \{\vec{u} \in \mathbb{W} : \exists \vec{v} \in \mathbb{V}, F(\vec{v}) = \vec{u}\}} $$
+
+\noindent\textbf{Własności Jądra i Obrazu:}
+\begin{itemize}
+    \item Zarówno $ker(F)$, jak i $Im(F)$ są \textbf{przestrzeniami liniowymi}.
+    \item Jeśli $\mathbb{V} = LIN(\vec{v}_1, \dots, \vec{v}_k)$, to $\mathbf{Im(F) = LIN(F(\vec{v}_1), \dots, F(\vec{v}_k))}$.
+\end{itemize}
+
+\noindent\textbf{Twierdzenie o wymiarach:} Dla skończenie wymiarowych przestrzeni $\mathbb{V}, \mathbb{W}$:
+$$ \mathbf{dim(\mathbb{V}) = dim(Im(F)) + dim(ker(F))} $$
+
+\section*{12. Rząd przekształcenia liniowego}
+\noindent\textbf{Rząd ($rk(F)$):} Wymiar przestrzeni będącej obrazem przekształcenia.
+$$ \mathbf{rk(F) = dim(Im(F))} $$
+
+\noindent\textbf{Własności i ograniczenia rzędu:}
+\begin{itemize}
+    \item $\mathbf{rk(F) \le \min(dim(\mathbb{V}), dim(\mathbb{W}))}$
+    \item $\mathbf{rk(F' \circ F) \le \min(rk(F), rk(F'))}$
+    \item Jeśli wartości $F(\vec{v}_1), \dots, F(\vec{v}_k)$ są liniowo niezależne, to wektory wejściowe $\vec{v}_1, \dots, \vec{v}_k$ \textbf{również są liniowo niezależne}.
+\end{itemize}
+
+\section*{13. Macierze ($M_{m,n}(\mathbb{F})$)}
+\noindent\textbf{Macierz rozmiaru $m \times n$ nad ciałem $\mathbb{F}$:} Tablica skalarów $A = (a_{ij})$, gdzie $i \in \{1,\dots,m\}$ (indeks wiersza) oraz $j \in \{1,\dots,n\}$ (indeks kolumny).
+\begin{itemize}
+    \item \textbf{Macierz kwadratowa:} $m = n$.
+    \item \textbf{Macierz jednostkowa ($Id_n$):} Macierz kwadratowa z jedynkami na głównej przekątnej ($a_{ii}=1$) i zerami poza nią.
+    \item \textbf{Transpozycja ($A^T$):} Odbicie macierzy względem przekątnej. $(A^T)_{ij} = (A)_{ji}$. \\
+    Własności: $(A+B)^T = A^T + B^T$, $(AB)^T = B^T A^T$, $(A^T)^T = A$.
+\end{itemize}
+
+\noindent\textbf{Działania na macierzach:}
+\begin{itemize}
+    \item \textbf{Dodawanie i mnożenie przez skalar:} Po współrzędnych (wymagają równych rozmiarów macierzy). Macierze $m \times n$ tworzą przestrzeń liniową.
+    \item \textbf{Mnożenie macierzy ($C = AB$):} Dla $A$ rozmiaru $m \times k$ i $B$ rozmiaru $k \times n$, macierz $C$ ma rozmiar $m \times n$.
+    $$ \mathbf{c_{ij} = \sum_{l=1}^k a_{il} b_{lj}} $$
+    (\textit{Iloczyn skalarny i-tego wiersza z A oraz j-tej kolumny z B}).
+    \item Mnożenie jest \textbf{łączne} ($A(BC) = (AB)C$) i \textbf{rozdzielne} ($A(B+C) = AB+AC$), ale \textbf{nie jest przemienne}!
+\end{itemize}
+
+\section*{14. Interpretacje wektorowe macierzy}
+\noindent\textbf{Wartości na wektorach bazowych:} Jeśli $\vec{E}_1, \dots, \vec{E}_n$ to standardowe wektory bazowe (kolumnowe), to:
+$$ \mathbf{M = [M\vec{E}_1 | M\vec{E}_2 | \dots | M\vec{E}_n]} $$
+(\textit{i-ta kolumna macierzy M to wynik mnożenia M przez i-ty wektor bazowy}).
+
+\noindent\textbf{Przekształcenie indukowane przez macierz:} Każda macierz $M$ rozmiaru $m \times n$ zadaje \textbf{przekształcenie liniowe} $F_M: \mathbb{F}^n \to \mathbb{F}^m$ określone wzorem:
+$$ \mathbf{F_M(\vec{V}) = M\vec{V}} $$
+\begin{itemize}
+    \item Zbiór macierzy jest \textbf{izomorficzny} ze zbiorem przekształceń liniowych.
+    \item Złożeniu przekształceń odpowiada iloczyn macierzy: $\mathbf{F_{M'} \circ F_M = F_{M'M}}$.
+\end{itemize}
+
+\section*{15. Operacje elementarne}
+Można je wykonać na macierzy przez pomnożenie jej przez tzw. \textbf{macierze elementarne}:
+\begin{itemize}
+    \item Zamiana kolumn/wierszy.
+    \item Dodanie wielokrotności kolumny/wiersza do innej.
+    \item Przemnożenie kolumny/wiersza przez niezerowy skalar.
+\end{itemize}
+\noindent\textbf{Uwaga:} Mnożenie przez macierz elementarną \textbf{z prawej} strony to operacja na \textbf{kolumnach}, a \textbf{z lewej} - operacja na \textbf{wierszach}. Operacje elementarne (a więc Eliminacja Gaussa) \textbf{nie zmieniają rzędu macierzy}.
+
+\noindent\textbf{Lemat (Mnożenie przez macierze elementarne):} \\
+Mnożenie macierzy $M$ przez macierz elementarną \textbf{z lewej strony} ($E \cdot M$) odpowiada wykonaniu operacji elementarnej \textbf{na wierszach} macierzy $M$:
+\begin{itemize}
+    \item $\mathbf{T_{ij} \cdot M}$ \ $\implies$ \ zamiana $i$-tego oraz $j$-tego wiersza.
+    \item $\mathbf{(Id_n + \alpha 1_{ij}) \cdot M}$ \ $\implies$ \ dodanie do $i$-tego wiersza $\alpha$-krotności $j$-tego wiersza.
+    \item $\mathbf{D_{i\alpha} \cdot M}$ \ $\implies$ \ przemnożenie $i$-tego wiersza przez skalar $\alpha$.
+\end{itemize}
+(\textit{Mnożenie z prawej strony $M \cdot E$ odpowiada dokładnie tym samym operacjom, ale wykonywanym na kolumnach macierzy $M$}).
+
+\section*{16. Rząd macierzy i Odwracanie}
+\noindent\textbf{Rząd macierzy ($rk(M)$):} Wymiar przestrzeni rozpiętej przez kolumny macierzy.
+\begin{itemize}
+    \item $\mathbf{rk(M) = rk(F_M)}$ (Rząd macierzy równa się rzędowi przekształcenia indukowanego).
+    \item $\mathbf{rk(M) = rk(M^T)}$ (Rząd kolumnowy zawsze równa się wierszowemu).
+    \item $\mathbf{rk(MN) \le \min(rk(M), rk(N))}$.
+\end{itemize}
+
+\noindent\textbf{Macierz odwracalna (nieosobliwa):} Macierz kwadratowa $A$, dla której $$\exists A^{-1}: \mathbf{A A^{-1} = A^{-1} A = Id_n}$$.
+\begin{itemize}
+    \item Macierz kwadratowa $A_{n \times n}$ jest odwracalna $\mathbf{\iff rk(A) = n}$.
+    \item Przekształcenie $F_A$ jest odwracalne $\iff$ macierz $A$ jest odwracalna ($F_{A^{-1}} = F_A^{-1}$).
+    \item Własności macierzy odwrotnej: $(A^{-1})^{-1} = A$, $\mathbf{(AB)^{-1} = B^{-1} A^{-1}}$, $(A^T)^{-1} = (A^{-1})^T$.
+\end{itemize}
+
+\section*{17. Macierz przekształcenia liniowego}
+\noindent\textbf{Macierz przekształcenia w bazie:} Dla przekształcenia $F: \mathbb{V} \to \mathbb{W}$ oraz baz $B_\mathbb{V} = \{\vec{v}_1, \dots, \vec{v}_n\}$ i $B_\mathbb{W} = \{\vec{w}_1, \dots, \vec{w}_m\}$ macierz $M_{B_V B_W}(F)$ jest zadana jako:
+$$ \mathbf{M_{B_V B_W}(F) = [(F(\vec{v}_1))_{B_W} | (F(\vec{v}_2))_{B_W} | \dots | (F(\vec{v}_n))_{B_W}]} $$
+(\textit{Kolumnami są wartości przekształcenia na wektorach z bazy dziedziny, wyrażone w bazie przeciwdziedziny}).
+
+\noindent\textbf{Kluczowe własności:}
+\begin{itemize}
+    \item \textbf{Obliczanie wartości:} $\mathbf{M_{B_V B_W}(F) \cdot (\vec{v})_{B_V} = (F\vec{v})_{B_W}}$ \\
+    (\textit{Mnożenie wektora przez macierz odpowiada wykonaniu przekształcenia}).
+    \item \textbf{Złożenie przekształceń:} $\mathbf{M_{B B''}(F' \circ F) = M_{B' B''}(F') \cdot M_{B B'}(F)}$ \\
+    (\textit{Macierz złożenia to iloczyn macierzy}).
+    \item \textbf{Rząd:} $\mathbf{rk(F) = rk(M_{B_V B_W}(F))}$.
+\end{itemize}
+
+\section*{18. Macierz zmiany bazy}
+\noindent\textbf{Macierz zmiany bazy ($M_{BB'}$):} Macierz przejścia z bazy $B$ do bazy $B'$, zdefiniowana formalnie jako macierz identyczności: $\mathbf{M_{BB'} = M_{BB'}(Id)}$.
+$$ \mathbf{M_{BB'} = [(\vec{v}_1)_{B'} | (\vec{v}_2)_{B'} | \dots | (\vec{v}_n)_{B'}]} $$
+(\textit{Kolumnami są wektory ze "starej" bazy B wyrażone we współrzędnych "nowej" bazy B'}).
+
+\noindent\textbf{Własności zmiany bazy:}
+\begin{itemize}
+    \item \textbf{Zmiana współrzędnych wektora:} $\mathbf{M_{BB'} \cdot (\vec{v})_B = (\vec{v})_{B'}}$
+    \item \textbf{Odwracalność:} $\mathbf{M_{BB'} \cdot M_{B'B} = Id}$ \ $\implies$ \ $\mathbf{(M_{BB'})^{-1} = M_{B'B}}$ \\
+    (\textit{Macierz powrotna to po prostu macierz odwrotna}).
+\end{itemize}
+
+\section*{19. Zmiana bazy dla macierzy przekształcenia}
+Aby wyrazić to samo przekształcenie liniowe $F: \mathbb{V} \to \mathbb{W}$ w nowych bazach ($B'_V$, $B'_W$), stosujemy wzór:
+$$ \mathbf{M_{B_V B_W}(F) = M_{B'_W B_W} \cdot M_{B'_V B'_W}(F) \cdot M_{B_V B'_V}} $$
+(\textit{Czytamy od prawej: najpierw zmiana bazy w dziedzinie, potem przekształcenie w nowych bazach, na końcu powrót do starej bazy w przeciwdziedzinie}).
+
+\noindent\textbf{Szczególny i najczęstszy przypadek (Endomorfizm):} \\
+Gdy $\mathbb{V} = \mathbb{W}$ oraz przechodzimy między pewną bazą $B$ a bazą standardową $E$:
+$$ \mathbf{M_{EE}(F) = M_{BE} \cdot M_{BB}(F) \cdot M_{EB}}$$
+oraz (mnożąc lewostronnie przez $M_{EB}$ i prawostronnie przez $M_{BE}$):
+$$ \mathbf{M_{BB}(F) = M_{EB} \cdot M_{EE}(F) \cdot M_{BE}}$$
+
+\section*{20. Wyznacznik macierzy ($\det$)}
+\noindent\textbf{Definicja aksjomatyczna:} Jedyna funkcja $\det: M_{n \times n}(\mathbb{F}) \to \mathbb{F}$ spełniająca trzy warunki: %
+\begin{enumerate}
+    \item \textbf{Wieloliniowość} (względem każdej kolumny/wiersza osobno):
+    $$ \det(\dots, \alpha\vec{v}_i, \dots) = \alpha \det(\dots, \vec{v}_i, \dots) $$
+    $$ \det(\dots, \vec{u} + \vec{w}, \dots) = \det(\dots, \vec{u}, \dots) + \det(\dots, \vec{w}, \dots) $$
+    \item \textbf{Niezmienniczość:} Dodanie wielokrotności innej kolumny nie zmienia wartości:
+    $$ \det(\dots, \vec{v}_i + \alpha\vec{v}_j, \dots) = \det(\dots, \vec{v}_i, \dots) $$
+    \item \textbf{Ustalenie skali:} $\mathbf{\det(Id_n) = 1}$.
+\end{enumerate}
+
+\noindent\textbf{Kluczowe własności:}
+\begin{itemize}
+    \item $\mathbf{\det(A) \neq 0 \iff rk(A) = n \iff A \text{ jest odwracalna}}$. %
+    \item $\mathbf{\det(A^T) = \det(A)}$ (\textit{Z wierszami robimy to samo co z kolumnami}). %
+    \item \textbf{Twierdzenie Cauchy'ego:} $\mathbf{\det(A \cdot B) = \det(A) \cdot \det(B)}$. %
+    \item Wyznacznik macierzy trójkątnej to iloczyn elementów na jej głównej przekątnej. %
+    \item Wyznacznik układu z wektorem zerowym jest równy zero: 
+    $$ \mathbf{\det(\dots, \vec{0}, \dots) = 0} $$
+    \item Jeśli dwa wektory (kolumny/wiersze) są identyczne ($\vec{V}_i = \vec{V}_j$), to wyznacznik jest zerowy:
+    $$ \mathbf{\det(\dots, \vec{V}_i, \dots, \vec{V}_i, \dots) = 0} $$
+    \item Zamiana kolejności dwóch wektorów miejscami \textbf{zmienia znak} wyznacznika na przeciwny:
+    $$ \mathbf{\det(\dots, \vec{V}_i, \dots, \vec{V}_j, \dots) = -\det(\dots, \vec{V}_j, \dots, \vec{V}_i, \dots)} $$
+\end{itemize}
+
+\section*{21. Obliczanie wyznacznika}
+\noindent\textbf{Minor ($A_{i,j}$):} Macierz powstała z $A$ przez \textbf{usunięcie} $i$-tego wiersza i $j$-tej kolumny. %
+
+\noindent\textbf{Dopełnienie algebraiczne elementu $a_{ij}$:} $\mathbf{(-1)^{i+j} \det(A_{i,j})}$. %
+
+\noindent\textbf{Rozwinięcie Laplace'a (względem $j$-tej kolumny):} %
+$$ \mathbf{\det(A) = \sum_{i=1}^n (-1)^{i+j} a_{ij} \det(A_{i,j})} $$
+(\textit{Redukuje obliczanie wyznacznika $n \times n$ do wyznaczników $(n-1) \times (n-1)$}).
+
+\noindent\textbf{Wzór dla $2 \times 2$:} %
+$$ \det \begin{bmatrix} a & b \\ c & d \end{bmatrix} = \mathbf{ad - bc} $$
+
+\section*{22. Wyznacznik a Macierz Odwrotna}
+Jeśli $\det(A) \neq 0$, to istnieje $A^{-1}$ i zachodzi: %
+$$ \mathbf{\det(A^{-1}) = \frac{1}{\det(A)}} $$
+
+\noindent\textbf{Konstrukcja macierzy odwrotnej:} Niech $C = (c_{ij})$ będzie \textit{macierzą dopełnień algebraicznych}, tzn. $c_{ij} = (-1)^{i+j} \det(A_{i,j})$. Wtedy: %
+$$ \mathbf{A^{-1} = \frac{1}{\det(A)} C^T} $$
+
+\noindent\textbf{Wzór dla $2 \times 2$:} %
+$$ \begin{bmatrix} a & b \\ c & d \end{bmatrix}^{-1} = \mathbf{\frac{1}{ad - bc} \begin{bmatrix} d & -b \\ -c & a \end{bmatrix}} $$
+
+\section*{23. Wyznacznik Przekształcenia Liniowego}
+\noindent\textbf{Niezależność od bazy:} Jeśli $M$ i $M'$ są macierzami tego samego przekształcenia $F$ w różnych bazach, to $\mathbf{\det(M) = \det(M')}$. %
+
+\noindent\textbf{Wyznacznik $F$:} Obliczamy wyznacznik macierzy tego przekształcenia wyrażonej w \textbf{dowolnej} bazie: %
+$$ \mathbf{\det(F) = \det(M_B(F))} $$
+
+\section*{24. Układy równań liniowych}
+\noindent\textbf{Zapis macierzowy:}
+$$ \mathbf{A\vec{X} = \vec{B}} $$
+gdzie $A \in M_{m,n}(\mathbb{F})$ to macierz główna układu, $\vec{X} \in \mathbb{F}^n$ to wektor niewiadomych, a $\vec{B} \in \mathbb{F}^m$ to wektor wyrazów wolnych. % [cite: 3326, 3333]
+
+\noindent\textbf{Interpretacja wektorowa ("pionowa"):} % [cite: 3334]
+$$ \mathbf{\sum_{i=1}^n x_i \vec{A}_i = \vec{B}} $$
+(\textit{Szukamy takiej kombinacji liniowej kolumn $\vec{A}_i$ macierzy $A$, która da wektor $\vec{B}$}). % [cite: 3336, 3338]
+
+\section*{25. Układy o macierzy kwadratowej ($n \times n$)}
+Gdy macierz $A$ jest kwadratowa i odwracalna ($\det(A) \neq 0$): % [cite: 3343]
+\begin{itemize}
+    \item Układ ma \textbf{dokładnie jedno} rozwiązanie: $\mathbf{\vec{X} = A^{-1}\vec{B}}$. % [cite: 3348]
+    \item \textbf{Wzory Cramera:} Rozwiązanie to można policzyć ze wzoru: % [cite: 3349]
+    $$ \mathbf{x_i = \frac{\det(A_{x_i})}{\det(A)}} $$
+    (\textit{Macierz $A_{x_i}$ powstaje przez zastąpienie $i$-tej kolumny macierzy $A$ wektorem $\vec{B}$}). % [cite: 3349]
+\end{itemize}
+
+\section*{26. Układy jednorodne ($\vec{B} = \vec{0}$)}
+Układ postaci $\mathbf{A\vec{X} = \vec{0}}$. % [cite: 3370, 3373]
+\begin{itemize}
+    \item Zawsze posiada przynajmniej jedno rozwiązanie ($\vec{X} = \vec{0}$). % [cite: 3371]
+    \item Zbiór wszystkich rozwiązań jest \textbf{przestrzenią liniową} równą jądru macierzy: $\mathbf{\ker(A)}$. % [cite: 3374]
+    \item Wymiar przestrzeni rozwiązań wynosi: $\mathbf{n - rk(A)}$. % [cite: 3374]
+\end{itemize}
+
+\section*{27. Układy niejednorodne i Tw. Kroneckera-Capellego}
+\noindent\textbf{Warunek istnienia rozwiązania:} % [cite: 3378]
+$$ A\vec{X} = \vec{B} \text{ ma rozwiązanie} \iff \mathbf{\vec{B} \in Im(A)} $$ % [cite: 3379]
+
+\noindent\textbf{Twierdzenie Kroneckera-Capellego:} % [cite: 3388]
+$$ A\vec{X} = \vec{B} \text{ ma rozwiązanie} \iff \mathbf{rk(A|\vec{B}) = rk(A)} $$ % [cite: 3390, 3391]
+(\textit{Rząd macierzy rozszerzonej $[A|\vec{B}]$ musi być równy rzędowi macierzy głównej $A$}). % [cite: 3393]
+
+\noindent\textbf{Struktura zbioru rozwiązań:} Jeśli układ ma chociaż jedno rozwiązanie (ozn. $\vec{X}_0$), to zbiór absolutnie wszystkich rozwiązań jest \textbf{warstwą} jądra macierzy $A$: % [cite: 3381]
+$$ \mathbf{\vec{X}_0 + \ker(A)} $$ % [cite: 3387]
+
+\section*{28. Eliminacja Gaussa dla układów równań}
+Operacje elementarne wykonywane na \textbf{wierszach} macierzy rozszerzonej $[A|\vec{B}]$ prowadzą do układów \textbf{równoważnych} (\textit{mających dokładnie ten sam zbiór rozwiązań}). % [cite: 3431, 3434]
+
+\noindent\textbf{Analiza rozwiązań z postaci schodkowej:} % [cite: 3443]
+\begin{itemize}
+    \item \textbf{Brak rozwiązań (układ sprzeczny):} Pojawia się wiersz postaci $[0 \dots 0 | b]$, gdzie $b \neq 0$. Wtedy $\mathbf{rk(A|\vec{B}) > rk(A)}$. % [cite: 3445, 3446]
+    \item \textbf{Dokładnie jedno rozwiązanie:} Macierz główna sprowadza się do postaci górnotrójkątnej z samymi niezerowymi elementami na przekątnej (brak zmiennych wolnych). % [cite: 3449]
+    \item \textbf{Nieskończenie wiele rozwiązań:} Układ nie jest sprzeczny, ale pojawiają się wiersze złożone z samych zer (i zero po prawej stronie), przez co $rk(A) < n$. Powstają tzw. zmienne wolne (parametryzujące warstwę z jądra). % [cite: 3450, 3452, 3453]
+\end{itemize}
+
+\section*{29. Wartości i wektory własne}
+\noindent\textbf{Definicja:} Skalar $\lambda$ jest \textbf{wartością własną} macierzy $M$ (dla niezerowego wektora $\vec{V}$), gdy: %
+$$ \mathbf{M\vec{V} = \lambda\vec{V}} $$
+(Wektor $\vec{V}$ nazywamy \textbf{wektorem własnym}). %
+
+\noindent\textbf{Przestrzeń wektorów własnych ($\mathbb{V}_\lambda$):} Zbiór wektorów własnych dla $\lambda$ (wraz z $\vec{0}$) tworzy podprzestrzeń liniową równą jądru: %
+$$ \mathbf{\mathbb{V}_\lambda = \ker(M - \lambda Id)} $$ %
+
+\section*{30. Wielomian charakterystyczny}
+\noindent\textbf{Definicja:} Dla macierzy $M_{n \times n}$ określamy wielomian stopnia $n$ zmiennej $x$: %
+$$ \mathbf{\varphi_M(x) = \det(M - x Id)} $$ %
+
+\noindent\textbf{Szukanie wartości własnych:} %
+$$ \lambda \text{ jest wartością własną } M \iff \mathbf{\varphi_M(\lambda) = 0} $$ %
+(\textit{Wartości własne to po prostu pierwiastki wielomianu charakterystycznego}). %
+
+\section*{31. Krotności}
+Każda wartość własna ma przypisane dwie krotności: %
+\begin{itemize}
+    \item \textbf{Krotność algebraiczna:} Krotność $\lambda$ jako pierwiastka w wielomianie $\varphi_M(x)$. %
+    \item \textbf{Krotność geometryczna:} Wymiar przestrzeni wektorów własnych dla $\lambda$, czyli $\mathbf{\dim(\mathbb{V}_\lambda) = \dim(\ker(M - \lambda Id))}$. %
+\end{itemize}
+\noindent\textbf{Zależność:} $\mathbf{\text{Krotność algebraiczna} \ge \text{Krotność geometryczna} \ge 1}$. \\ Czyli też: Jeśli krotność algebraiczna wynosi 1, to geometryczna wynosi 1.%
+
+\section*{32. Macierze podobne}
+\noindent\textbf{Definicja:} Macierze kwadratowe $M, M'$ są \textbf{podobne} ($M \sim M'$), jeśli istnieje odwracalna macierz $A$ taka, że: %
+$$ \mathbf{M' = A^{-1} M A} $$ %
+(\textit{Odpowiada to tej samej macierzy przekształcenia, ale wyrażonej w innej bazie}). %
+
+\noindent\textbf{Własność:} Macierze podobne mają \textbf{dokładnie te same wartości własne} (i ten sam wielomian charakterystyczny). %
+
+\section*{33. Diagonalizacja}
+\noindent\textbf{Macierz diagonalizowalna:} Macierz, która jest podobna do macierzy przekątniowej (diagonalnej) $D$. %
+
+\noindent\textbf{Twierdzenie o diagonalizacji:} Macierz $M_{n \times n}$ jest diagonalizowalna $\iff$ posiada $\mathbf{n}$ \textbf{liniowo niezależnych wektorów własnych} $\iff$ suma krotności geometrycznych wynosi $n$. %
+Wtedy:
+$$ \mathbf{M = A^{-1} D A} $$ %
+(\textit{Kolumny $A^{-1}$ to wektory własne, a na przekątnej macierzy $D$ stoją odpowiadające im wartości własne}). %
+
+\noindent\textbf{Macierze symetryczne ($M = M^T$):} Macierz symetryczna nad ciałem $\mathbb{R}$ \textbf{zawsze} posiada $n$ niezależnych wektorów własnych, czyli zawsze jest diagonalizowalna nad $\mathbb{R}$. %
+
+\section*{34. Macierz Jordana (Gdy diagonalizacja zawodzi)}
+\noindent\textbf{Klatka Jordana ($J_k$):} Macierz posiadająca na przekątnej tę samą wartość $\lambda$, jedynki tuż nad przekątną i zera w pozostałych miejscach. Klatka taka ma zawsze krotność geometryczną dla $\lambda$ równą zaledwie 1 (tylko 1 wektor własny). %
+
+\noindent\textbf{Rozkład Jordana:} Każdą macierz kwadratową $M$ nad ciałem $\mathbb{C}$ można przedstawić w postaci $\mathbf{M = A^{-1} J A}$, gdzie $J$ to macierz złożona z klatek Jordana leżących na głównej przekątnej. %
+
+\section*{35. Algorytm PageRank}
+\noindent\textbf{Znormalizowana macierz sąsiedztwa ($M$):} % [cite: 4054, 4055]
+$$ \mathbf{m_{i,j} = \frac{d_{i,j}}{m_j}} $$ % [cite: 4056]
+(\textit{$d_{i,j}$ - liczba krawędzi z $j$ do $i$, $m_j$ - całkowita liczba krawędzi wychodzących z $j$}). % [cite: 4054]
+
+\noindent\textbf{Wektor i macierz stochastyczna:} Wektor jest stochastyczny, gdy jego współrzędne są nieujemne i sumują się do 1. Macierz jest stochastyczna (kolumnowo), gdy każda jej kolumna jest wektorem stochastycznym. % [cite: 4059, 4060]
+
+\noindent\textbf{Ranking ($\vec{R}$):} % [cite: 4083]
+$$ \mathbf{M\vec{R} = \vec{R} \quad \land \quad \sum r_i = 1} $$ % [cite: 4083]
+(\textit{Wektor własny dla wartości własnej $\lambda = 1$ o sumie współrzędnych równej 1. Macierz stochastyczna zawsze posiada wartość własną 1}). % [cite: 4085, 4090]
+
+\section*{36. Macierze dodatnie i unikalność rankingu}
+\noindent\textbf{Macierz dodatnia ($A > 0$):} Macierz, której absolutnie wszystkie elementy są ściśle dodatnie ($a_{i,j} > 0$). % [cite: 4115]
+
+\noindent\textbf{Twierdzenie o unikalności:} Jeśli $A$ jest dodatnią macierzą stochastyczną, to wymiar jej przestrzeni wektorów własnych dla $\lambda=1$ wynosi dokładnie 1 ($\mathbf{\dim(\mathbb{V}_1) = 1}$). % [cite: 4144]
+(\textit{Oznacza to, że układ ma dokładnie jeden, unikalny wektor rankingu}). % [cite: 4153, 4155]
+
+\noindent\textbf{Macierz PageRank ($M'$):} Aby wymusić dodatniość (i unikalność rankingu) dla dowolnego grafu internetu, modyfikujemy macierz $M$ parametrem $m \in (0, 1)$: % [cite: 4109, 4110, 4111]
+$$ \mathbf{M' = (1-m)M + m P} $$ % [cite: 4110]
+(\textit{Gdzie $P$ to macierz stochastyczna złożona z samych ułamków $\frac{1}{n}$. Zapewnia to, że $M' > 0$}). % [cite: 4110, 4115]
+
+\section*{37. Obliczanie rankingu}
+Ranking macierzy dodatniej można obliczyć na dwa sposoby: % [cite: 4149, 4158]
+\begin{itemize}
+    \item \textbf{Analitycznie (Układ równań):} Rozwiązując układ $\mathbf{(A - Id)\vec{X} = 0}$ z dodatkowym warunkiem $\mathbf{\sum x_i = 1}$. % [cite: 4152, 4154]
+    \item \textbf{Iteracyjnie (Metoda potęgowa):} Mnożąc wielokrotnie macierz przez dowolny początkowy wektor stochastyczny $\vec{V}$: % [cite: 4159, 4160]
+    $$ \mathbf{\lim_{k \to \infty} M^k \vec{V} = \vec{R}} $$ % [cite: 4159, 4160]
+\end{itemize}
+
+\noindent\textbf{Norma $l_1$:} $\mathbf{||\vec{V}||_1 = \sum_{i=1}^n |v_i|}$. Mnożenie przez macierz stochastyczną \textbf{nie zwiększa} normy $l_1$ wektora ($\mathbf{||A\vec{V}||_1 \le ||\vec{V}||_1}$). % [cite: 4172, 4173, 4176]
+
+\section*{38. Grafy silnie spójne}
+\noindent\textbf{Silna spójność:} Graf skierowany, w którym z każdego wierzchołka da się dojść ścieżką do każdego innego wierzchołka. % [cite: 4284]
+\begin{itemize}
+    \item Jeśli graf jest silnie spójny, to już jego bazowa znormalizowana macierz sąsiedztwa $M$ ma jednowymiarową przestrzeń wektorów własnych dla 1 ($\mathbf{\dim(\mathbb{V}_1) = 1}$). % [cite: 4282, 4295]
+    \item (\textit{W algorytmie PageRank stosuje się jednak modyfikację $+ mP$, aby zagwarantować prawidłowe działanie dla grafów niespójnych i uniknąć problemu np. wierzchołków "wiszących"}). % [cite: 4095, 4111, 4283]
+\end{itemize}
+
+\section*{39. Standardowy iloczyn skalarny}
+\noindent\textbf{Definicja:} Dla wektorów w $\mathbb{R}^n$: %
+$$ \mathbf{\vec{V}^T \cdot \vec{U} = \sum_{i=1}^n v_i u_i} $$ %
+(\textit{Dla $\mathbb{C}^n$ w iloczynie sumujemy $v_i \overline{u}_i$ - druga współrzędna jest sprzężona}). %
+
+\noindent\textbf{Pojęcia metryczne:} %
+\begin{itemize}
+    \item \textbf{Długość (norma):} $\mathbf{||\vec{V}|| = \sqrt{\vec{V} \cdot \vec{V}}}$ %
+    \item \textbf{Odległość:} $\mathbf{||\vec{U} - \vec{V}||}$ %
+    \item \textbf{Kąt:} $\mathbf{\cos \alpha = \frac{\vec{V} \cdot \vec{U}}{||\vec{V}|| \cdot ||\vec{U}||}}$ %
+    \item \textbf{Prostopadłość ($\perp$):} $\mathbf{\vec{V} \perp \vec{U} \iff \vec{V} \cdot \vec{U} = 0}$ %
+\end{itemize}
+
+\noindent\textbf{Nierówność Cauchy'ego-Schwarza:} %
+$$ \mathbf{\vec{U} \cdot \vec{V} \le ||\vec{U}|| \cdot ||\vec{V}||} $$ %
+(\textit{Równość zachodzi wtedy i tylko wtedy, gdy wektory są liniowo zależne}). %
+
+\section*{40. Dopełnienie ortogonalne ($U^\perp$)}
+\noindent\textbf{Definicja:} Zbiór wektorów prostopadłych do \textbf{każdego} wektora z podzbioru $U$: %
+$$ \mathbf{U^\perp = \{\vec{V} \in \mathbb{F}^n : \forall_{\vec{W} \in U} \vec{V} \perp \vec{W}\}} $$ %
+
+\noindent\textbf{Własności:} %
+\begin{itemize}
+    \item $\vec{V} \in \mathbb{W}^\perp \iff \vec{V}$ jest prostopadły do każdego wektora z \textbf{bazy} przestrzeni $\mathbb{W}$. %
+    \item Związek z jądrem macierzy: $\mathbf{LIN(\vec{V}_1, \dots, \vec{V}_m)^\perp = \ker([\vec{V}_1 | \dots | \vec{V}_m]^T)}$. %
+    \item \textbf{Wymiar:} Jeśli układ $m$ wektorów jest niezależny, to $\mathbf{\dim(LIN(\dots)^\perp) = n - m}$. %
+    \item \textbf{Podwójne dopełnienie:} Dla podprzestrzeni liniowej $\mathbb{W} \le \mathbb{F}^n$ zachodzi $\mathbf{(\mathbb{W}^\perp)^\perp = \mathbb{W}}$. %
+\end{itemize}
+
+\section*{42. Ogólny iloczyn skalarny}
+\noindent\textbf{Iloczyn skalarny:} Funkcja $\langle \cdot, \cdot \rangle: \mathbb{V}^2 \to \mathbb{F}$ (dla $\mathbb{F} = \mathbb{R}$ lub $\mathbb{C}$) spełniająca:
+\begin{enumerate}
+    \item \textbf{Liniowość (I argument):} $\mathbf{\langle \alpha \vec{u} + \beta \vec{v}, \vec{w} \rangle = \alpha \langle \vec{u}, \vec{w} \rangle + \beta \langle \vec{v}, \vec{w} \rangle}$
+    \item \textbf{Symetria:} $\mathbf{\langle \vec{u}, \vec{v} \rangle = \langle \vec{v}, \vec{u} \rangle}$ (\textit{dla $\mathbb{C}$ antysymetria: $\langle \vec{u}, \vec{v} \rangle = \overline{\langle \vec{v}, \vec{u} \rangle}$})
+    \item \textbf{Dodatnia określoność:} $\mathbf{\vec{v} \neq \vec{0} \implies \langle \vec{v}, \vec{v} \rangle > 0}$
+\end{enumerate}
+(\textit{Przestrzeń nad $\mathbb{R}$ z iloczynem skalarnym nazywamy \textbf{Euklidesową}, nad $\mathbb{C}$ - \textbf{unitarną}}).
+
+\noindent\textbf{Norma (długość) i metryka (odległość):}
+$$ \mathbf{||\vec{v}|| = \sqrt{\langle \vec{v}, \vec{v} \rangle}} \quad \text{oraz} \quad \mathbf{d(\vec{u}, \vec{v}) = ||\vec{u} - \vec{v}||} $$
+
+\noindent\textbf{Nierówności:}
+\begin{itemize}
+    \item \textbf{Cauchy'ego-Schwarza:} $\mathbf{|\langle \vec{u}, \vec{v} \rangle| \le ||\vec{u}|| \cdot ||\vec{v}||}$ (\textit{Równość $\iff$ wektory są zależne}).
+    \item \textbf{Trójkąta:} $\mathbf{||\vec{u} + \vec{v}|| \le ||\vec{u}|| + ||\vec{v}||}$
+    \item $\mathbf{||\vec{u}|| - ||\vec{v}|| \le ||\vec{u} - \vec{v}||}$
+\end{itemize}
+
+\section*{43. Macierz iloczynu skalarnego}
+\noindent\textbf{Definicja:} W ustalonej bazie $B = \{\vec{v}_1, \dots, \vec{v}_n\}$ iloczyn skalarny zadaje macierz $M = (m_{ij})$:
+$$ \mathbf{m_{ij} = \langle \vec{v}_i, \vec{v}_j \rangle} $$
+(\textit{Macierz ta jest zawsze \textbf{symetryczna}}).
+
+\noindent\textbf{Obliczanie iloczynu w bazie $B$:} Mnożenie zapisujemy w notacji macierzowej:
+$$ \mathbf{\langle \vec{u}, \vec{w} \rangle = (\vec{u})_B^T \cdot M \cdot (\vec{w})_B} $$
+
+\noindent\textbf{Macierz przy zmianie bazy:} Dla bazy $B$ i nowej bazy $B'$ macierz iloczynu $M'$ wyliczamy jako:
+$$ \mathbf{M' = (M_{B'B})^T \cdot M \cdot M_{B'B}} $$
+
+\noindent\textbf{Kryterium Sylvestera:} Symetryczna macierz $M$ zadaje poprawny iloczyn skalarny (\textit{jest dodatnio określona}) $\iff$ \textbf{wszystkie jej wiodące minory główne mają dodatni wyznacznik} ($\det(M_k) > 0$ dla każdego $k=1,\dots,n$).
+
+\section*{44. Bazy ortogonalne i ortonormalne}
+\noindent\textbf{Układ ortogonalny:} Baza $B = \{\vec{e}_1, \dots, \vec{e}_n\}$ jest ortogonalna, jeśli każde dwa różne wektory są do siebie prostopadłe: $\mathbf{\langle \vec{e}_i, \vec{e}_j \rangle = 0}$ dla $i \neq j$.
+
+\noindent\textbf{Układ ortonormalny:} Baza ortogonalna, w której dodatkowo każdy wektor ma długość 1: $\mathbf{||\vec{e}_i|| = 1}$.
+
+\noindent\textbf{Rozkład wektora w bazie ortogonalnej:} Jeśli baza jest ortogonalna, współrzędne dowolnego wektora $\vec{v} = \sum \alpha_i \vec{e}_i$ wyrażają się jawnym wzorem:
+$$ \mathbf{\alpha_i = \frac{\langle \vec{v}, \vec{e}_i \rangle}{\langle \vec{e}_i, \vec{e}_i \rangle}} $$
+(\textit{Jeśli baza jest ortonormalna, mianownik wynosi 1, więc $\alpha_i = \langle \vec{v}, \vec{e}_i \rangle$}).
+
+\section*{45. Ortogonalizacja Grama-Schmidta}
+Proces zamiany dowolnej bazy $\{\vec{v}_1, \dots, \vec{v}_k\}$ na \textbf{bazę ortogonalną} $\{\vec{e}_1, \dots, \vec{e}_k\}$ rozpinającą tę samą przestrzeń.
+\noindent\textbf{Wzory rekurencyjne:}
+\begin{align*}
+    \mathbf{\vec{e}_1} &\mathbf{= \vec{v}_1} \\
+    \mathbf{\vec{e}_2} &\mathbf{= \vec{v}_2 - \frac{\langle \vec{v}_2, \vec{e}_1 \rangle}{\langle \vec{e}_1, \vec{e}_1 \rangle} \vec{e}_1} \\
+    \mathbf{\vec{e}_i} &\mathbf{= \vec{v}_i - \sum_{j=1}^{i-1} \frac{\langle \vec{v}_i, \vec{e}_j \rangle}{\langle \vec{e}_j, \vec{e}_j \rangle} \vec{e}_j}
+\end{align*}
+(\textit{Od każdego kolejnego wektora $\vec{v}_i$ odejmujemy jego rzuty na dotychczas wyliczone wektory $\vec{e}_j$}).
+
+\section*{46. Rzut prostopadły ($P_{\mathbb{W}}$)}
+\noindent\textbf{Definicja:} Dla podprzestrzeni $\mathbb{W} \le \mathbb{V}$, każdy wektor $\vec{v} \in \mathbb{V}$ można jednoznacznie rozłożyć jako $\vec{v} = \vec{w} + \vec{w}^\perp$, gdzie $\vec{w} \in \mathbb{W}$ oraz $\vec{w}^\perp \in \mathbb{W}^\perp$. %
+Przyporządkowanie $\mathbf{P_{\mathbb{W}}(\vec{v}) = \vec{w}}$ nazywamy \textbf{rzutem prostopadłym} na podprzestrzeń $\mathbb{W}$. %
+
+\noindent\textbf{Własności rzutu ($P = P_{\mathbb{W}}$):} %
+\begin{itemize}
+    \item Jest jednoznacznie określony. %
+    \item $\mathbf{P\vec{v} \in \mathbb{W}}$ oraz $\mathbf{\vec{v} - P\vec{v} \in \mathbb{W}^\perp}$. %
+    \item $\mathbf{P\vec{w} = \vec{w}}$ dla każdego $\vec{w} \in \mathbb{W}$ (\textit{nie zmienia wektorów leżących już na płaszczyźnie rzutu}). %
+    \item $\mathbf{P\vec{w}^\perp = \vec{0}}$ dla każdego $\vec{w}^\perp \in \mathbb{W}^\perp$ (\textit{zeruje wektory prostopadłe}). %
+\end{itemize}
+
+\noindent\textbf{Abstrakcyjna definicja:} Przekształcenie liniowe $P: \mathbb{V} \to \mathbb{V}$ jest rzutem prostopadłym $\iff \mathbf{P^2 = P}$ oraz $\mathbf{P(\vec{v}) \perp (\vec{v} - P(\vec{v}))}$ dla każdego $\vec{v}$. %
+
+\section*{47. Symetrie ($S_{\mathbb{W}}$)}
+\noindent\textbf{Definicja:} Symetria względem podprzestrzeni $\mathbb{W} \le \mathbb{V}$ to przekształcenie liniowe $S_{\mathbb{W}}$ spełniające dwa warunki: %
+\begin{itemize}
+    \item $\mathbf{S_{\mathbb{W}}\vec{v} = \vec{v}}$ \ dla \ $\vec{v} \in \mathbb{W}$ \\
+    (\textit{punkty na osi/płaszczyźnie symetrii zostają w miejscu}). %
+    \item $\mathbf{S_{\mathbb{W}}\vec{v} = -\vec{v}}$ \ dla \ $\vec{v} \in \mathbb{W}^\perp$ \\
+    (\textit{wektory prostopadłe do płaszczyzny są odbijane na drugą stronę}). %
+\end{itemize}
+
+\noindent\textbf{Związek z rzutem prostopadłym:} Symetrię można błyskawicznie wyliczyć, mając już macierz rzutu na tę samą podprzestrzeń, korzystając z poniższego wzoru: %
+$$ \mathbf{S_{\mathbb{W}} = 2P_{\mathbb{W}} - Id} $$ %
+(\textit{Aby odbić wektor, dodajemy do niego dwukrotność tego, co brakuje mu do rzutu}).
+
+\section*{48. Izometrie i Macierze Ortogonalne}
+\noindent\textbf{Izometria:} Przekształcenie liniowe $F: \mathbb{V} \to \mathbb{V}$ (na przestrzeni z iloczynem skalarnym), które zachowuje iloczyn skalarny: %
+$$ \mathbf{\langle F(\vec{v}), F(\vec{u}) \rangle = \langle \vec{v}, \vec{u} \rangle} $$ %
+
+\noindent\textbf{Równoważne warunki bycia izometrią:} %
+\begin{itemize}
+    \item $F$ zachowuje długość wektorów: $\mathbf{||F(\vec{v})|| = ||\vec{v}||}$ dla każdego $\vec{v} \in \mathbb{V}$. %
+    \item W bazie ortonormalnej $B$, macierz tego przekształcenia $M_{BB}(F)$ jest \textbf{macierzą ortogonalną}. %
+\end{itemize}
+
+\noindent\textbf{Macierz ortogonalna ($M$):} Macierz kwadratowa, której kolumny są parami prostopadłe i mają długość 1 (tworzą układ ortonormalny w standardowym iloczynie). %
+\begin{itemize}
+    \item \textbf{Kluczowa własność:} $\mathbf{M \text{ jest ortogonalna} \iff M^{-1} = M^T}$. %
+    \item Przekształcenie $\vec{v} \mapsto M\vec{v}$ zadane macierzą ortogonalną jest zawsze izometrią w $\mathbb{R}^n$. %
+    \item Macierze ortogonalne są zamknięte na mnożenie, transponowanie i odwracanie. %
+\end{itemize}
+
+\section*{49. Formy dwuliniowe i Macierz Grama}
+\noindent\textbf{Funkcjonał dwuliniowy (forma dwuliniowa):} Funkcja $F: \mathbb{V} \times \mathbb{V} \to \mathbb{F}$ liniowa względem obu swoich argumentów. %
+
+\noindent\textbf{Macierz formy (Macierz Grama) $M^B$:} W ustalonej bazie $B = \{\vec{v}_1, \dots, \vec{v}_n\}$, forma $F$ jest jednoznacznie zadana przez macierz $M^B$: %
+$$ \mathbf{(M^B)_{ij} = F(\vec{v}_i, \vec{v}_j)} \quad \implies \quad \mathbf{F(\vec{u}, \vec{v}) = [\vec{u}]_B^T \cdot M^B \cdot [\vec{v}]_B} $$ %
+(\textit{Jeśli $F$ to iloczyn skalarny, a baza $B$ jest ortonormalna, to $M^B = Id$}). %
+
+\noindent\textbf{Zmiana bazy dla formy dwuliniowej:} Transformacja przy przejściu z bazy $B$ do bazy $A$: %
+$$ \mathbf{M^B = M_{BA}^T \cdot M^A \cdot M_{BA}} $$ %
+(\textit{Uwaga: Wzór różni się od zmiany bazy dla przekształcenia liniowego obecnością transpozycji zamiast macierzy odwrotnej}). %
+
+\section*{50. Macierze dodatnio określone i Rozkład Cholesky'ego}
+\noindent\textbf{Macierz dodatnio określona ($M$):} Macierz symetryczna $n \times n$, która definiuje prawidłowy iloczyn skalarny na $\mathbb{R}^n$ wzorem $\langle \vec{u}, \vec{v} \rangle = \vec{u}^T M \vec{v}$. %
+
+\noindent\textbf{Warunki równoważne dodatniej określoności:} %
+\begin{enumerate}
+    \item \textbf{Z definicji (wektorowo):} $\mathbf{M = M^T}$ oraz $\mathbf{\forall_{\vec{v} \neq \vec{0}} \ \vec{v}^T M \vec{v} > 0}$. %
+    \item \textbf{Z wartości własnych:} $\mathbf{M = M^T}$ oraz \textbf{wszystkie} jej wartości własne są ściśle dodatnie ($\lambda_i > 0$). %
+    \item \textbf{Kryterium Sylvestera:} Wiodące minory główne (macierze lewego górnego rogu wymiaru $k \times k$) mają dodatnie wyznaczniki: $\mathbf{\det(M_k) > 0}$ dla każdego $k=1,\dots,n$. %
+    \item \textbf{Istnienie "bazy ortonormalnej":} Istnieje układ niezależny $\vec{B}_1, \dots, \vec{B}_n$ taki, że $\mathbf{\vec{B}_i^T M \vec{B}_j = 0}$ (dla $i \neq j$) oraz $\mathbf{\vec{B}_i^T M \vec{B}_i = 1}$. %
+\end{enumerate}
+
+\noindent\textbf{Rozkład Cholesky'ego:} Jeśli $M$ jest dodatnio określona, można ją rozłożyć (w sposób jednoznaczny) na: %
+$$ \mathbf{M = A^T A} $$ %
+gdzie $A$ to macierz \textbf{górno-trójkątna} z dodatnimi elementami na głównej przekątnej. %
+
+\noindent\textbf{Pierwiastek z macierzy:} Dla każdej dodatnio określonej rzeczywistej macierzy $M$ istnieje taka macierz $N$, że: %
+$$ \mathbf{M = N^2} $$ %
+(\textit{Uzyskujemy ją przez diagonalizację $M = A^{-1}DA$ i spierwiastkowanie elementów diagonalnych w $D$}). %
+\\
+
+\newpage
+\begin{center}
+    \Huge \textbf{Algebra Abstrakcyjna - Podsumowanie definicji i własności} \\
+    \vspace{0.5cm}
+\end{center}
+\vspace{0.5cm}
+
+\section*{1. Grupa i jej podstawowe własności}
+\noindent\textbf{Definicja Grupy:} Zbiór $G$ z działaniem dwuargumentowym (ozn. jako mnożenie $a \cdot b$ lub po prostu $ab$), spełniający 3 aksjomaty: %
+\begin{enumerate}
+    \item \textbf{Łączność:} $\mathbf{(ab)c = a(bc)}$ %
+    \item \textbf{Element neutralny ($e$):} $\mathbf{\exists e \in G \ \forall g \in G: \ ge = eg = g}$ %
+    \item \textbf{Element odwrotny ($g^{-1}$):} $\mathbf{\forall g \in G \ \exists g^{-1} \in G: \ gg^{-1} = g^{-1}g = e}$ %
+\end{enumerate}
+
+\noindent\textbf{Grupa abelowa (przemienna):} Grupa, w której dodatkowo $\mathbf{ab = ba}$ dla każdych $a, b \in G$. %
+
+\noindent\textbf{Własności:} %
+\begin{itemize}
+    \item Element neutralny $e$ oraz element odwrotny $g^{-1}$ są \textbf{wyznaczone jednoznacznie}. %
+    \item Odwrotność iloczynu: $\mathbf{(ab)^{-1} = b^{-1}a^{-1}}$ %
+    \item Równania $ax=b$ oraz $xa=b$ mają zawsze dokładnie jedno rozwiązanie. %
+\end{itemize}
+
+\section*{2. Rząd elementu i grupy}
+\noindent\textbf{Rząd grupy ($|G|$):} Moc zbioru $G$ (liczba jego elementów). %
+
+\noindent\textbf{Rząd elementu ($a$):} Najmniejsza dodatnia liczba całkowita $n$, taka że: %
+$$ \mathbf{a^n = e} $$ %
+(\textit{Jeśli takie $n$ nie istnieje, element ma rząd nieskończony}). %
+
+\noindent\textbf{Własności rzędu:} %
+\begin{itemize}
+    \item W grupie skończonej \textbf{każdy} element ma rząd skończony. %
+    \item Jeśli element $a$ ma rząd $p$, to $\mathbf{a^l = e \iff p \mid l}$ (\textit{rząd dzieli każdą potęgę dającą $e$}). %
+    \item Rząd elementu $a$ jest zawsze równy rzędowi jego odwrotności $a^{-1}$. %
+\end{itemize}
+
+\section*{3. Podgrupy i Generowanie}
+\noindent\textbf{Podgrupa ($H \le G$):} Podzbiór $H \subseteq G$, który sam tworzy grupę względem działania z $G$. %
+$$ \mathbf{H \le G \iff (\forall a,b \in H: ab \in H) \land (\forall a \in H: a^{-1} \in H)} $$ %
+(\textit{Dla grup skończonych wystarczy sprawdzić samą zamkniętość na działanie: $ab \in H$}). %
+
+\noindent\textbf{Podgrupa generowana $\langle A \rangle$:} Najmniejsza podgrupa zawierająca zbiór $A$. Składa się ze wszystkich możliwych (zredukowanych) iloczynów elementów z $A$ oraz ich odwrotności. %
+
+\section*{4. Homomorfizm i Izomorfizm}
+\noindent\textbf{Homomorfizm ($\varphi: G \to H$):} Funkcja między grupami, która zachowuje działanie: %
+$$ \mathbf{\varphi(ab) = \varphi(a)\varphi(b)} $$ %
+
+\noindent\textbf{Własności homomorfizmu:} Zawsze mapuje element neutralny na neutralny oraz odwrotny na odwrotny: %
+$$ \mathbf{\varphi(e_G) = e_H} \quad \text{oraz} \quad \mathbf{\varphi(a^{-1}) = (\varphi(a))^{-1}} $$ %
+
+\noindent\textbf{Izomorfizm:} Homomorfizm, który jest \textbf{bijekcją} (\textit{oznacza, że grupy są strukturalnie identyczne, różnią się tylko nazwami elementów}). %
+
+\section*{5. Grupy Cykliczne}
+\noindent\textbf{Definicja:} Grupa generowana przez jeden element: $\mathbf{G = \langle a \rangle}$. %
+\begin{itemize}
+    \item Każda grupa cykliczna jest \textbf{przemienna} (abelowa). %
+    \item Każda podgrupa grupy cyklicznej jest \textbf{również cykliczna}. %
+    \item Grupa cykliczna skończona (rzędu $n$) jest izomorficzna z $\mathbf{(\mathbb{Z}_n, +)}$. %
+    \item Grupa cykliczna nieskończona jest izomorficzna z $\mathbf{(\mathbb{Z}, +)}$. %
+\end{itemize}
+
+\section*{6. Grupa Wolna}
+\noindent\textbf{Definicja:} Grupa ułożona ze słów nad alfabetem $\Sigma \cup \Sigma^{-1}$. Działaniem jest łączenie (konkatenacja) słów, a następnie ich \textbf{redukcja} (skracanie sąsiadujących elementów z ich odwrotnościami, np. $x x^{-1} \to e$). %
+
+\noindent\textbf{Twierdzenie Nielsena-Schreiera:} \textbf{Każda} podgrupa grupy wolnej jest grupą wolną. %
+
+\section*{7. Grupa permutacji ($S_n$)}
+\noindent\textbf{Definicja:} Grupa $S_n$ to zbiór wszystkich bijekcji ze zbioru $\{1,2,\dots,n\}$ w samego siebie. %
+Działaniem w tej grupie jest \textbf{składanie funkcji}: %
+$$ \mathbf{(\sigma' \circ \sigma)(i) = \sigma'(\sigma(i))} $$ %
+
+\noindent\textbf{Twierdzenie Cayleya:} Każda abstrakcyjna grupa $G$ rzędu $n$ jest izomorficzna z pewną podgrupą grupy permutacji $S_n$. %
+
+\section*{8. Cykle i Transpozycje}
+\noindent\textbf{Cykl $(a_1, a_2, \dots, a_k)$:} Permutacja, która cyklicznie przesuwa elementy nośnika ($\sigma(a_i) = a_{i+1}$, $\sigma(a_k)=a_1$) i nie zmienia pozostałych. %
+\begin{itemize}
+    \item \textbf{Rząd cyklu:} Długość cyklu (czyli $k$). %
+    \item \textbf{Odwrotność cyklu:} $\mathbf{(a_1, \dots, a_k)^{-1} = (a_k, \dots, a_2, a_1)}$. %
+    \item \textbf{Transpozycja:} Cykl o długości dokładnie 2. Cykl długości $k$ jest złożeniem $\mathbf{k-1}$ transpozycji. %
+\end{itemize}
+
+\noindent\textbf{Cykle rozłączne i rozkład:}
+\begin{itemize}
+    \item Cykle o rozłącznych nośnikach są \textbf{przemienne}. %
+    \item Każda permutacja posiada \textbf{jednoznaczny rozkład} na iloczyn cykli rozłącznych. %
+    \item Rząd permutacji (złożonej z cykli rozłącznych) to najmniejsza wspólna wielokrotność ich rzędów: %
+    $$ \mathbf{rząd(c_1 c_2 \dots c_m) = NWW(rząd(c_1), \dots, rząd(c_m))}$$ %
+    \item Każda permutacja daje się przedstawić jako złożenie transpozycji (niekoniecznie rozłącznych), co oznacza, że transpozycje generują grupę $S_n$. %
+\end{itemize}
+
+\section*{9. Parzystość permutacji i Grupa Alternująca ($A_n$)}
+\noindent\textbf{Inwersja:} Para elementów $(i, j)$ taka, że $\mathbf{i < j}$, ale po permutacji $\mathbf{\sigma(i) > \sigma(j)}$. %
+
+\noindent\textbf{Znak permutacji ($sgn(\sigma)$):} $+1$ gdy ma parzystą liczbę inwersji (permutacja parzysta), $-1$ gdy nieparzystą (permutacja nieparzysta). %
+\begin{itemize}
+    \item \textbf{Homomorfizm:} $\mathbf{sgn(\sigma' \circ \sigma) = sgn(\sigma') \cdot sgn(\sigma)}$. %
+    \item \textbf{Paradoks długości cyklu:} Cykl o długości \textbf{parzystej} jest permutacją \textbf{nieparzystą} (i na odwrót!). %
+    \item Szybkie badanie parzystości: Permutacja jest parzysta $\iff$ w jej rozkładzie na cykle rozłączne znajduje się \textbf{parzysta liczba cykli parzystej długości}. %
+\end{itemize}
+
+\noindent\textbf{Grupa alternująca ($A_n$):} Podgrupa w $S_n$ zrzeszająca wyłącznie wszystkie permutacje parzyste. Jej rząd wynosi dokładnie połowę rzędu całej grupy: %
+$$ \mathbf{|A_n| = \frac{n!}{2}} $$ %
+
+\section*{10. Definicja wyznacznika (wzór permutacyjny)}
+Mając aparat permutacji, wyznacznik macierzy $M = (a_{ij})$ rozmiaru $n \times n$ można wprost zdefiniować wzorem: %
+$$ \mathbf{\det(M) = \sum_{\sigma \in S_n} sgn(\sigma) \prod_{i=1}^n a_{i, \sigma(i)}} $$ %
+
+\section*{11. Działania na podzbiorach grupy}
+\noindent\textbf{Mnożenie podzbiorów:} Dla $U, W \subseteq G$: %
+$$ \mathbf{U \cdot W = \{uw : u \in U, w \in W\}} $$ %
+(\textit{Jest to działanie łączne i rozdzielne względem sumy mnogościowej}). %
+
+\noindent\textbf{Własności (dla podgrupy $H \le G$):} %
+\begin{itemize}
+    \item $\mathbf{gG = Gg = G}$ %
+    \item $\mathbf{gH = H \iff Hg = H \iff g \in H}$ %
+\end{itemize}
+
+\section*{12. Działanie grupy na zbiorze}
+\noindent\textbf{Definicja:} Działanie grupy $G$ na zbiorze obiektów $\mathcal{C}$ to homomorfizm z $G$ w grupę permutacji zbioru $\mathcal{C}$. Wartość działania elementu $g \in G$ na $c \in \mathcal{C}$ zapisujemy skrótowo jako $\mathbf{gc}$ (lub $g(c)$). %
+
+\noindent\textbf{Orbita ($O_c$):} Zbiór wszystkich miejsc, w które element $c$ może zostać "przesunięty" przez grupę. %
+$$ \mathbf{O_c = Gc = \{gc : g \in G\}} $$ %
+(\textit{Dwie orbity w danym zbiorze są zawsze albo identyczne, albo całkowicie rozłączne}). %
+
+\noindent\textbf{Stabilizator ($G_c$):} Zbiór elementów grupy, które pozostawiają $c$ w miejscu. %
+$$ \mathbf{G_c = \{g \in G : gc = c\}} $$ %
+(\textit{Stabilizator jest zawsze \textbf{podgrupą} grupy $G$}). %
+
+\noindent\textbf{Związek orbity ze stabilizatorem:} Zbiór wszystkich elementów z $G$ posyłających obiekt $s$ w konkretne miejsce $g_0s$ jest po prostu warstwą $\mathbf{g_0 G_s}$. Wynika z tego kluczowa własność: %
+$$ \mathbf{|G| = |O_c| \cdot |G_c|} $$ %
+(\textit{Zarówno rozmiar orbity, jak i rozmiar stabilizatora, zawsze dzielą rząd całej grupy $|G|$}). %
+
+\section*{13. Lemat Burnside'a}
+Służy do zliczania "istotnie różnych" obiektów (np. plansz, kolorowań) z dokładnością do operacji z grupy $G$. Matematycznie polega to na obliczeniu \textbf{liczby wszystkich orbit} (ozn. $|\mathcal{O}|$). %
+
+\noindent\textbf{Punkty stałe ($fix(g)$):} Zbiór elementów w $\mathcal{C}$, których przekształcenie $g$ nie rusza. %
+$$ \mathbf{fix(g) = \{c \in \mathcal{C} : gc = c\}} $$ %
+
+\noindent\textbf{Wzór Burnside'a:} Liczba orbit to po prostu średnia liczba punktów stałych dla wszystkich elementów z grupy: %
+$$ \mathbf{|\mathcal{O}| = \frac{1}{|G|} \sum_{g \in G} |fix(g)|} $$ %
+(\textit{Dobra praktyka: W zadaniach kombinatorycznych liczba punktów stałych dla permutacji $g$ wynosi zazwyczaj $\mathbf{k^c}$, gdzie $k$ to liczba dostępnych kolorów, a $c$ to liczba cykli w rozkładzie $g$ na cykle rozłączne}). %
+
+\section*{14. Warstwy}
+\noindent\textbf{Warstwa lewostronna ($gH$):} Dla podgrupy $H \le G$ i elementu $g \in G$: %
+$$ \mathbf{gH = \{gh : h \in H\}} $$ %
+(\textit{Zbiór wszystkich warstw lewostronnych oznaczamy jako $G/H$}). %
+
+\noindent\textbf{Własności warstw:} %
+\begin{itemize}
+    \item Każde dwie warstwy lewostronne są \textbf{równoliczne} ($|gH| = |H|$). %
+    \item Każde dwie warstwy lewostronne są albo \textbf{całkowicie rozłączne}, albo \textbf{identyczne}. %
+    \item Grupa $G$ działa na zbiorze warstw $G/H$ przez mnożenie z lewej strony: $\mathbf{g(aH) = (ga)H}$. %
+\end{itemize}
+
+\section*{15. Twierdzenie Lagrange'a}
+\noindent\textbf{Indeks podgrupy ($[G:H]$):} Liczba (zbiór) wszystkich warstw lewostronnych podgrupy $H$ w grupie $G$. %
+
+\noindent\textbf{Twierdzenie Lagrange'a:} Dla skończonej grupy $G$ i jej podgrupy $H$: %
+$$ \mathbf{|G| = |H| \cdot [G:H]} $$ %
+(\textit{Zarówno rząd podgrupy $|H|$, jak i jej indeks $[G:H]$, zawsze dzielą rząd całej grupy $|G|$}). %
+
+\noindent\textbf{Kluczowe wnioski:} %
+\begin{itemize}
+    \item Rząd każdego elementu dzieli rząd grupy. %
+    \item Każda grupa o rzędzie będącym liczbą pierwszą ($|G|=p$) jest \textbf{cykliczna} (i generuje ją dowolny niezerowy element). %
+\end{itemize}
+
+\section*{16. Działanie przez sprzężenie i Centrum Grupy}
+\noindent\textbf{Sprzężenie:} Specyficzne działanie grupy $G$ na sobie samej, zadane wzorem: %
+$$ \mathbf{g(a) = gag^{-1}} $$ %
+(\textit{Orbity tego działania nazywamy \textbf{klasami sprzężoności}}). %
+
+\noindent\textbf{Centralizator ($C(a)$):} Stabilizator elementu $a$ w działaniu przez sprzężenie. Zbiór elementów z $G$ przemiennych z $a$: %
+$$ \mathbf{C(a) = \{g \in G : ga = ag\}} $$ %
+
+\noindent\textbf{Centrum grupy ($Z(G)$):} Zbiór elementów, które są przemienne z absolutnie \textbf{każdym} elementem w grupie $G$. %
+$$ \mathbf{Z(G) = \{a \in G : \forall_{g \in G} \ ga = ag\}} $$ %
+(\textit{Zauważ, że $a \in Z(G) \iff C(a) = G \iff$ klasa sprzężoności elementu $a$ ma rozmiar dokładnie 1}). %
+
+\section*{17. Równanie klas}
+Wynika z zastosowania zasady podziału na orbity dla działania przez sprzężenie. Rząd grupy to suma wielkości wszystkich klas sprzężoności: %
+$$ \mathbf{|G| = |Z(G)| + \sum_{i=1}^k [G : C(a_i)]} $$ %
+(\textit{Suma przebiega po $a_i$ będących reprezentantami klas sprzężoności o rozmiarze $> 1$}). %
+
+\noindent\textbf{Własność $p$-grup:} Jeśli rząd grupy wynosi $p^k$ (dla $p$ liczby pierwszej), to jej centrum jest nietrywialne ($\mathbf{|Z(G)| > 1}$). %
+
+\section*{18. Pierścienie i Ciała}
+\noindent\textbf{Pierścień ($R$):} Zbiór z dwoma działaniami ($+, \cdot$), w którym: %
+\begin{itemize}
+    \item $(R, +)$ jest grupą przemienną (abelową). %
+    \item $(R, \cdot)$ jest półgrupą (\textit{działanie jest łączne}). %
+    \item Zachodzi rozdzielność mnożenia względem dodawania: $\mathbf{a(b+c) = ab+ac}$. %
+\end{itemize}
+
+\noindent\textbf{Ciało ($\mathbb{F}$):} Pierścień przemienny z jednością ($1 \neq 0$), w którym każdy niezerowy element ma element odwrotny względem mnożenia (\textit{czyli $(\mathbb{F} \setminus \{0\}, \cdot)$ jest grupą}). %
+
+\noindent\textbf{Struktura $\mathbb{Z}_m$:} Pierścień liczb całkowitych modulo $m$. %
+$$ \mathbf{\mathbb{Z}_m \text{ jest ciałem} \iff m \text{ jest liczbą pierwszą}} $$ %
+
+\section*{19. Arytmetyka modularna i NWD}
+\noindent\textbf{Kongruencja (przystawanie):} %
+$$ \mathbf{a \equiv_m b \iff m \mid (a-b)} $$ %
+(\textit{Relacja ta zachowuje dodawanie i mnożenie, a przekształcenie $n \mapsto n \pmod m$ jest homomorfizmem pierścieni}). %
+
+\noindent\textbf{Algorytm Euklidesa i Rozszerzony Algorytm Euklidesa:} Dla dowolnych $a, b \in \mathbb{Z}_+$ istnieją liczby całkowite $x, y \in \mathbb{Z}$ takie, że: %
+$$ \mathbf{gcd(a, b) = xa + yb} $$ %
+
+\noindent\textbf{Odwracalność modulo:} %
+$$ \mathbf{a \text{ ma element odwrotny w } \mathbb{Z}_m \iff gcd(a,m) = 1} $$ %
+(\textit{Odwrotność tę wyznaczamy z równania $ax + my = 1$, gdzie szukaną odwrotnością $a^{-1}$ jest $x$}). %
+
+\section*{20. Elementy odwracalne i Twierdzenie Eulera}
+\noindent\textbf{Grupa elementów odwracalnych ($R^*$):} Zbiór wszystkich elementów odwracalnych pierścienia $R$ zawsze tworzy \textbf{grupę ze względu na mnożenie}. %
+(\textit{Dla dowolnego ciała skończonego $\mathbb{F}$, jego grupa multiplikatywna $\mathbb{F}^*$ jest zawsze \textbf{cykliczna}}). %
+
+\noindent\textbf{Symbol Eulera ($\varphi(m)$):} Liczba liczb mniejszych od $m$ i względnie z nim pierwszych (czyli moc grupy $\mathbb{Z}_m^*$). %
+\begin{itemize}
+    \item Dla $p$ pierwszego: $\mathbf{\varphi(p^k) = (p-1)p^{k-1}}$. %
+    \item Dla $n, m$ względnie pierwszych: $\mathbf{\varphi(nm) = \varphi(n)\varphi(m)}$. %
+\end{itemize}
+
+\noindent\textbf{Twierdzenie Eulera:} Jeśli $gcd(a, m) = 1$, to: %
+$$ \mathbf{a^{\varphi(m)} \equiv_m 1} $$ %
+
+\section*{21. Chińskie Twierdzenie o Resztach (CRT)}
+Dla parami względnie pierwszych modułów $m_1, m_2, \dots, m_k$, układ kongruencji ma unikalne rozwiązanie modulo $M = m_1 m_2 \dots m_k$. %
+Formalnie, naturalny homomorfizm określa \textbf{izomorfizm pierścieni}: %
+$$ \mathbf{\mathbb{Z}_{m_1 m_2 \dots m_k} \cong \mathbb{Z}_{m_1} \times \mathbb{Z}_{m_2} \times \dots \times \mathbb{Z}_{m_k}} $$ %
+(\textit{Pozwala to na rozbicie operacji na gigantycznych liczbach na równoległe operacje na mniejszych resztach}). %
+
+\section*{22. Reszty kwadratowe w $\mathbb{Z}_p$ (Kryptografia)}
+W ciele $\mathbb{Z}_p$ (dla nieparzystej liczby pierwszej $p$), połowa niezerowych elementów to kwadraty innych liczb, a połowa nie. %
+\begin{itemize}
+    \item Istnieje dokładnie $\mathbf{(p-1)/2}$ kwadratów (reszt kwadratowych) i $\mathbf{(p-1)/2}$ nie-kwadratów. %
+    \item Kwadraty odpowiadają \textbf{parzystym potęgom} generatora grupy $\mathbb{Z}_p^*$. %
+\end{itemize}
+
+\noindent\textbf{Kryterium Eulera:} Dla elementu $a \in \mathbb{Z}_p^*$: %
+$$ \mathbf{a^{\frac{p-1}{2}} = 1} \iff \text{a jest kwadratem} $$ %
+$$ \mathbf{a^{\frac{p-1}{2}} = -1} \iff \text{a NIE jest kwadratem} $$ %
+
+
+\end{document}
